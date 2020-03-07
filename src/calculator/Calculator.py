@@ -1,346 +1,349 @@
-'''
+#!/usr/bin/env python3
+"""
 Created on 29.07.2011
+Updated to python 3 and PEP8 on 07.03.2020
 
-@author: Lipatov
-'''
+@author: Nikita Lipatov
+"""
 
-import calculator.Number as num
-import calculator.Variables as vars
-import math 
+import math
+
+from calculator import Number
+from calculator import Variables
+
 
 class Calculator(object):
-    '''
+    """
         Enums
-    '''
-    TYPE_NONE        = 1
-    TYPE_DELIMITER   = 2
-    TYPE_NUMBER      = 3
-    TYPE_FUNCTION    = 4
-    TYPE_VARIABLE    = 5
-    
+    """
+    TYPE_NONE = 1
+    TYPE_DELIMITER = 2
+    TYPE_NUMBER = 3
+    TYPE_FUNCTION = 4
+    TYPE_VARIABLE = 5
+
     TYPE_DEGREE = 1
     TYPE_GRADUS = 2
-    typeTangentUnit = TYPE_DEGREE 
-    
+    typeTangentUnit = TYPE_DEGREE
+
     '''
         Variables
     '''
-    idString    = 0 
-    storString  = ""
-    storToken   = ""
-    typeToken   = ""
-    
+    id_string = 0
+    stored_string = ""
+    stored_token = ""
+    type_token = ""
+
     def __init__(self):
-        self.idString    = 0 
-        self.storString  = ""
-        self.storToken   = ""
-        self.typeToken   = ""
-        self.variables   = vars.Variables()
-     
-    def calculate(self, expression) :
-        if len(expression) > 1024 :
-            raise "Too much expression"
-        self.storString = expression.lower().replace(" ", "");
-        self.idString = 0;
-        self.__getToken();
-        if self.storToken == "" :
-            raise "Not found tokens!"
-        result = num.Number()
-        self.__firstStepParsing(result)
-        return result.getValue()
-    
-    def __firstStepParsing(self, number) :
-        token = ""
-        tempType = ""
-        if (self.typeToken == self.TYPE_VARIABLE) :
-            token = self.storToken
-            tempType = self.TYPE_VARIABLE
-            if (self.variables.contains(token) == False) :
+        self.id_string = 0
+        self.stored_string = ""
+        self.stored_token = ""
+        self.type_token = ""
+        self.variables = Variables.Variables()
+
+    def calculate(self, expression):
+        if len(expression) > 1024:
+            raise Exception("Too much expression")
+        self.stored_string = expression.lower().replace(" ", "")
+        self.id_string = 0
+        self.__get_token()
+        if self.stored_token == "":
+            raise Exception("Not found tokens!")
+        result = Number.Number()
+        self.__first_step_parsing(result)
+        return result.get_value()
+
+    def __first_step_parsing(self, number):
+        if self.type_token == self.TYPE_VARIABLE:
+            token = self.stored_token
+            temp_type = self.TYPE_VARIABLE
+            if self.variables.contains(token) is False:
                 self.variables.add(token, 0.0)
-            self.__getToken()
-            if (self.storToken != "=") :
-                self.__putBack()
-                if (self.variables.contains(token) == False) :
+            self.__get_token()
+            if self.stored_token != "=":
+                self.__put_back()
+                if self.variables.contains(token) is False:
                     self.variables.remove(token)
-                self.storToken = token
-                self.typeToken = tempType
-            else :
-                self.__getToken()
-                self.__secondStepParsing(number)
-                self.variables.add(token, number.getValue())
-                return;
-        self.__secondStepParsing(number)
-    
-    def __putBack(self) :
+                self.stored_token = token
+                self.type_token = temp_type
+            else:
+                self.__get_token()
+                self.__second_step_parsing(number)
+                self.variables.add(token, number.get_value())
+                return
+        self.__second_step_parsing(number)
+
+    def __put_back(self):
         i = 0
-        while(i < len(self.storToken)) :
-            self.idString -= 1
+        while i < len(self.stored_token):
+            self.id_string -= 1
             i += 1
-        
-    def __findVar(self, key) :
-        if (self.variables.contains(key) == False) :
-            raise BaseException("Variable does not found!")
+
+    def __find_var(self, key):
+        if self.variables.contains(key) is False:
+            raise Exception("Variable not found!")
         return self.variables.get(key)
-    
-    def __secondStepParsing(self, number) :
-        self.__thirdStepParsing(number);
-        token = self.storToken
-        while (token == "+" or token == "-") :
-            self.__getToken();
-            temp = num.Number()
-            self.__thirdStepParsing(temp);
-            if(token == "-") :
-                number.setValue(number.getValue() - temp.getValue());
-            elif(token == "+") :
-                number.setValue(number.getValue() + temp.getValue());
-            token = self.storToken
-    
-    def __thirdStepParsing(self, number) :
-        self.__fourthStepParsing(number);
-        token = self.storToken
-        while(token == "*" or token == "/" or token == "%") :
-            self.__getToken()
-            temp = num.Number()
-            self.__fourthStepParsing(temp);
-            if(token == "/") :
-                if (temp.getValue() == 0.0) :
-                    raise BaseException("Division by zero!")
-                number.setValue(number.getValue() / temp.getValue())
-                token = self.storToken
-            elif(token == "%") :
-                if (temp.getValue() == 0.0) :
-                    raise BaseException("Division by zero!")
-                number.setValue(number.getValue() % temp.getValue())
-                token = self.storToken
-            elif(token == "*") :
-                number.setValue(number.getValue() * temp.getValue())
-                token = self.storToken
-            
-            
-    def __fourthStepParsing(self, number) :
-        self.__fifthStepParsing(number);
-        if (self.storToken == "^") :
-            self.__getToken();
-            temp = num.Number()
-            self.__fourthStepParsing(temp);
-            number.setValue(math.pow(number.getValue(), temp.getValue()));
-    
-    def __fifthStepParsing(self, number) :
-        str = "";
-        if ((self.typeToken == self.TYPE_DELIMITER) and 
-            (self.storToken == "+" or self.storToken == "-")) :
-            str = self.storToken;
-            self.__getToken();
-        self.__sixthStepParsing(number);
-        if (str == "-") :
-            number.invertValue();
-            
-    def __sixthStepParsing(self, number) :
-        if (self.storToken == "(") :
-            self.__getToken();
-            self.__secondStepParsing(number);
-            if (self.storToken != ")") :
-                raise BaseException("Brackets unbalance");
-            self.__getToken();
-        else :
-            self.__seventhStepParsing(number);
-    
-    def __seventhStepParsing(self, number) :
-        if self.storToken == "e" :
-            number.setValue(math.e)
-            self.__getToken()
-            return;
-        elif(self.storToken == "pi") :
-            number.setValue(math.pi)
-            self.__getToken()
-            return;
-        else :
+
+    def __second_step_parsing(self, number):
+        self.__third_step_parsing(number)
+        token = self.stored_token
+        while token == "+" or token == "-":
+            self.__get_token()
+            temp = Number.Number()
+            self.__third_step_parsing(temp)
+            if token == "-":
+                number.set_value(number.get_value() - temp.get_value())
+            elif token == "+":
+                number.set_value(number.get_value() + temp.get_value())
+            token = self.stored_token
+
+    def __third_step_parsing(self, number):
+        self.__fourth_step_parsing(number)
+        token = self.stored_token
+        while token == "*" or token == "/" or token == "%":
+            self.__get_token()
+            temp = Number.Number()
+            self.__fourth_step_parsing(temp)
+            if token == "/":
+                if temp.get_value() == 0.0:
+                    raise Exception("Division by zero!")
+                number.set_value(number.get_value() / temp.get_value())
+                token = self.stored_token
+            elif token == "%":
+                if temp.get_value() == 0.0:
+                    raise Exception("Division by zero!")
+                number.set_value(number.get_value() % temp.get_value())
+                token = self.stored_token
+            elif token == "*":
+                number.set_value(number.get_value() * temp.get_value())
+                token = self.stored_token
+
+    def __fourth_step_parsing(self, number):
+        self.__fifth_step_parsing(number)
+        if self.stored_token == "^":
+            self.__get_token()
+            temp = Number.Number()
+            self.__fourth_step_parsing(temp)
+            number.set_value(math.pow(number.get_value(), temp.get_value()))
+
+    def __fifth_step_parsing(self, number):
+        local_token = ""
+        if ((self.type_token == self.TYPE_DELIMITER) and
+                (self.stored_token == "+" or self.stored_token == "-")):
+            local_token = self.stored_token
+            self.__get_token()
+        self.__sixth_step_parsing(number)
+        if local_token == "-":
+            number.invert_value()
+
+    def __sixth_step_parsing(self, number):
+        if self.stored_token == "(":
+            self.__get_token()
+            self.__second_step_parsing(number)
+            if self.stored_token != ")":
+                raise Exception("Brackets unbalance")
+            self.__get_token()
+        else:
+            self.__seventh_step_parsing(number)
+
+    def __seventh_step_parsing(self, number):
+        if self.stored_token == "e":
+            number.set_value(math.e)
+            self.__get_token()
+            return
+        elif self.stored_token == "pi":
+            number.set_value(math.pi)
+            self.__get_token()
+            return
+        else:
             self.__atom(number)
-        
-    def __atom(self, number) :
-        if self.typeToken == self.TYPE_NUMBER :
-            number.setValue(self.storToken)
-            self.__getToken();
-            return;
-        elif self.typeToken == self.TYPE_FUNCTION :
-            self.__functions(number);
-            return;
-        elif self.typeToken == self.TYPE_VARIABLE:
-            number.setValue(self.__findVar(self.storToken));
-            self.__getToken();
-            return;
-        else :
-            number.setValue(0.0)
-            raise BaseException("Syntax error")
-        
+
+    def __atom(self, number):
+        if self.type_token == self.TYPE_NUMBER:
+            number.set_value(self.stored_token)
+            self.__get_token()
+            return
+        elif self.type_token == self.TYPE_FUNCTION:
+            self.__functions(number)
+            return
+        elif self.type_token == self.TYPE_VARIABLE:
+            number.set_value(self.__find_var(self.stored_token))
+            self.__get_token()
+            return
+        else:
+            number.set_value(0.0)
+            raise Exception("Syntax error")
+
     def __functions(self, number):
-        functionName = self.storToken;
-        if(functionName == "abs") :
-            self.__oneParameterFunctions(functionName, number)
-        elif(functionName == "log10") :
-            self.__oneParameterFunctions(functionName, number)
-        elif(functionName == "sqrt") :
-            self.__oneParameterFunctions(functionName, number)
-        elif(functionName == "acos") :
-            self.__oneParameterFunctions(functionName, number)
-        elif(functionName == "asin") :
-            self.__oneParameterFunctions(functionName, number)
-        elif(functionName == "atan") :
-            self.__oneParameterFunctions(functionName, number) 
-        elif(functionName == "cos") :
-            self.__oneParameterFunctions(functionName, number)
-        elif(functionName == "sin") :
-            self.__oneParameterFunctions(functionName, number)
-        elif(functionName == "tan") :
-            self.__oneParameterFunctions(functionName, number)
-        elif(functionName == "ceil") :
-            self.__oneParameterFunctions(functionName, number)
-        elif(functionName == "floor") :
-            self.__oneParameterFunctions(functionName, number)
-        elif(functionName == "pow") :
-            self.__twoParameterFunctions(functionName, number)
-        elif(functionName == "log") :
-            self.__twoParameterFunctions(functionName, number)
-        elif(functionName == "min") :
-            self.__multiParameterFunctions(functionName, number)
-        elif(functionName == "max") :
-            self.__multiParameterFunctions(functionName, number)
-        elif(functionName == "avg") :
-            self.__multiParameterFunctions(functionName, number)
-        elif(functionName == "sum") :
-            self.__multiParameterFunctions(functionName, number)
-            
-            
-    def __oneParameterFunctions(self, functionName, number) :
-        self.__getToken();
-        self.__sixthStepParsing(number);
-        if(functionName == "abs") :
-            number.setValue(math.fabs(number.getValue()))
-        elif(functionName == "log10") :
-            number.setValue(math.log10(number.getValue()))
-        elif(functionName == "sqrt") :
-            number.setValue(math.sqrt(number.getValue()))
-        elif(functionName == "acos") :
-            number.setValue(math.acos(self.__gradToRad(number.getValue())))
-        elif(functionName == "asin") :
-            number.setValue(math.asin(self.__gradToRad(number.getValue())))
-        elif(functionName == "atan") :
-            number.setValue(math.atan(self.__gradToRad(number.getValue()))) 
-        elif(functionName == "cos") :
-            number.setValue(math.cos(self.__gradToRad(number.getValue())))
-        elif(functionName == "sin") :
-            number.setValue(math.sin(self.__gradToRad(number.getValue())))
-        elif(functionName == "tan") :
-            number.setValue(math.tan(self.__gradToRad(number.getValue())))
-        elif(functionName == "ceil") :
-            number.setValue(math.ceil(number.getValue()))
-        elif(functionName == "floor") :
-            number.setValue(math.floor(number.getValue()))
-        
-    def __gradToRad(self, result) :
-        if(self.typeTangentUnit == self.TYPE_DEGREE ) : 
-                result = result * math.pi / 180;
-        elif(self.typeTangentUnit ==  self.GRADUS ) :
-                result = result * math.pi / 200;
-        return result;
-    
-    def __twoParameterFunctions(self, functionName, number) : 
-        self.__getToken();
-        self.__getToken();
-        self.__firstStepParsing(number);
-        if (self.storToken == ",") :
-            self.__getToken();
-            temp = num.Number()
-            self.__firstStepParsing(temp)
-            if(functionName == "pow") :
-                number.setValue(math.pow(number.getValue(), temp.getValue()));
-            elif(functionName == "log") :
-                number.setValue(math.log(temp.getValue()) / math.log(number.getValue()));
-            if (self.storToken == ",") :
-                raise BaseException("Syntax error");
-            elif (self.storToken != ")") :
-                raise "Brackets unbalance"
-            self.__getToken()
-        else :
-            raise BaseException("Syntax error");
-        
-    def __multiParameterFunctions(self, functionName, number) :
-        self.__getToken(); 
-        self.__getToken(); 
-        self.__firstStepParsing(number);
-        i = 1;
-        while(True == True) :
-            if (self.storToken == ",") :
-                self.__getToken();
-                temp = num.Number()
-                self.__firstStepParsing(temp);
-                if (functionName == "min" and number.getValue() > temp.getValue()) : 
-                    number.setValue(temp.getValue())
-                elif (functionName == "max" and number.getValue() < temp.getValue()) : 
-                    number.setValue(temp.getValue())
-                elif (functionName == "avg") : 
-                    number.setValue(number.getValue() + temp.getValue())
-                    i +=1;
-                elif (functionName == "sum") :
-                    number.setValue(number.getValue() + temp.getValue())
-                    i +=1;
-            elif (self.storToken == ")") :
-                if(functionName == "avg") :
-                    number.setValue(number.getValue() / i);
-                self.__getToken();
-                break;
-            else :
-                raise BaseException("Brackets unbalance");
-      
-    def __getToken(self) :
-        self.typeToken = self.TYPE_NONE;
-        self.storToken = "";
-        strBuffer      = "";
-        
-        if self.idString == len(self.storString) :
-            return;
-        
-        if self._isDelimiter(self.storString[self.idString]) :
-            strBuffer += self.storString[self.idString]
-            self.idString += 1
-            self.typeToken = self.TYPE_DELIMITER;
-        elif self._isCharacter(self.storString[self.idString]) :
-            lengthName = 0;
-            while self._isDelimiter(self.storString[self.idString]) == False :
-                strBuffer += self.storString[self.idString];
-                self.idString += 1;
-                if (self.idString >= len(self.storString)) : 
-                    break;
-                lengthName += 1;
-                if(lengthName >= 32) :
-                    raise BaseException("Expression is too long");
-            if (self.idString < len(self.storString) and self.storString[self.idString] == '(') : 
-                self.typeToken = self.TYPE_FUNCTION;
-            else :
-                self.typeToken = self.TYPE_VARIABLE;
-        elif self._isDigit(self.storString[self.idString]) :
-            while self._isDelimiter(self.storString[self.idString]) == False :
-                strBuffer += self.storString[self.idString];
-                self.idString += 1
-                if self.idString >= len(self.storString) :
-                    break;
-            self.typeToken = self.TYPE_NUMBER;
-        self.storToken = strBuffer;
-    
-    def _isDelimiter(self, char):
-        if " +-/\\*%^=(),".find(char) != -1 :
+        function_name = self.stored_token
+        if function_name == "abs":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "log10":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "sqrt":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "acos":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "asin":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "atan":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "cos":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "sin":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "tan":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "ceil":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "floor":
+            self.__one_parameter_functions(function_name, number)
+        elif function_name == "pow":
+            self.__two_parameter_functions(function_name, number)
+        elif function_name == "log":
+            self.__two_parameter_functions(function_name, number)
+        elif function_name == "min":
+            self.__multi_parameter_functions(function_name, number)
+        elif function_name == "max":
+            self.__multi_parameter_functions(function_name, number)
+        elif function_name == "avg":
+            self.__multi_parameter_functions(function_name, number)
+        elif function_name == "sum":
+            self.__multi_parameter_functions(function_name, number)
+
+    def __one_parameter_functions(self, function_name, number):
+        self.__get_token()
+        self.__sixth_step_parsing(number)
+        if function_name == "abs":
+            number.set_value(math.fabs(number.get_value()))
+        elif function_name == "log10":
+            number.set_value(math.log10(number.get_value()))
+        elif function_name == "sqrt":
+            number.set_value(math.sqrt(number.get_value()))
+        elif function_name == "acos":
+            number.set_value(math.acos(self.__grad2rad(number.get_value())))
+        elif function_name == "asin":
+            number.set_value(math.asin(self.__grad2rad(number.get_value())))
+        elif function_name == "atan":
+            number.set_value(math.atan(self.__grad2rad(number.get_value())))
+        elif function_name == "cos":
+            number.set_value(math.cos(self.__grad2rad(number.get_value())))
+        elif function_name == "sin":
+            number.set_value(math.sin(self.__grad2rad(number.get_value())))
+        elif function_name == "tan":
+            number.set_value(math.tan(self.__grad2rad(number.get_value())))
+        elif function_name == "ceil":
+            number.set_value(math.ceil(number.get_value()))
+        elif function_name == "floor":
+            number.set_value(math.floor(number.get_value()))
+
+    def __grad2rad(self, result):
+        if self.typeTangentUnit == self.TYPE_DEGREE:
+            result = result * math.pi / 180
+        elif self.typeTangentUnit == self.TYPE_GRADUS:
+            result = result * math.pi / 200
+        return result
+
+    def __two_parameter_functions(self, function_name, number):
+        self.__get_token()
+        self.__get_token()
+        self.__first_step_parsing(number)
+        if self.stored_token == ",":
+            self.__get_token()
+            temp = Number.Number()
+            self.__first_step_parsing(temp)
+            if function_name == "pow":
+                number.set_value(math.pow(number.get_value(), temp.get_value()))
+            elif function_name == "log":
+                number.set_value(math.log(temp.get_value()) / math.log(number.get_value()))
+            if self.stored_token == ",":
+                raise Exception("Syntax error")
+            elif self.stored_token != ")":
+                raise Exception("Brackets unbalance")
+            self.__get_token()
+        else:
+            raise Exception("Syntax error")
+
+    def __multi_parameter_functions(self, function_name, number):
+        self.__get_token()
+        self.__get_token()
+        self.__first_step_parsing(number)
+        i = 1
+        while True:
+            if self.stored_token == ",":
+                self.__get_token()
+                temp = Number.Number()
+                self.__first_step_parsing(temp)
+                if function_name == "min" and number.get_value() > temp.get_value():
+                    number.set_value(temp.get_value())
+                elif function_name == "max" and number.get_value() < temp.get_value():
+                    number.set_value(temp.get_value())
+                elif function_name == "avg":
+                    number.set_value(number.get_value() + temp.get_value())
+                    i += 1
+                elif function_name == "sum":
+                    number.set_value(number.get_value() + temp.get_value())
+                    i += 1
+            elif self.stored_token == ")":
+                if function_name == "avg":
+                    number.set_value(number.get_value() / i)
+                self.__get_token()
+                break
+            else:
+                raise Exception("Brackets unbalance")
+
+    def __get_token(self):
+        self.type_token = self.TYPE_NONE
+        self.stored_token = ""
+        str_buffer = ""
+
+        if self.id_string == len(self.stored_string):
+            return
+
+        if self.is_delimiter(self.stored_string[self.id_string]):
+            str_buffer += self.stored_string[self.id_string]
+            self.id_string += 1
+            self.type_token = self.TYPE_DELIMITER
+        elif self.is_character(self.stored_string[self.id_string]):
+            length_name = 0
+            while self.is_delimiter(self.stored_string[self.id_string]) is False:
+                str_buffer += self.stored_string[self.id_string]
+                self.id_string += 1
+                if self.id_string >= len(self.stored_string):
+                    break
+                length_name += 1
+                if length_name >= 32:
+                    raise Exception("Expression is too long")
+            if self.id_string < len(self.stored_string) and self.stored_string[self.id_string] == '(':
+                self.type_token = self.TYPE_FUNCTION
+            else:
+                self.type_token = self.TYPE_VARIABLE
+        elif self.is_digit(self.stored_string[self.id_string]):
+            while self.is_delimiter(self.stored_string[self.id_string]) is False:
+                str_buffer += self.stored_string[self.id_string]
+                self.id_string += 1
+                if self.id_string >= len(self.stored_string):
+                    break
+            self.type_token = self.TYPE_NUMBER
+        self.stored_token = str_buffer
+
+    @staticmethod
+    def is_delimiter(char):
+        if " +-/\\*%^=(),".find(char) != -1:
             return True
-        else :
+        else:
             return False
 
-    def _isDigit(self, idString):
-        if "0123456789".find(idString) != -1 :
+    @staticmethod
+    def is_digit(char):
+        if "0123456789".find(char) != -1:
             return True
-        else :
+        else:
             return False
-        
-    def _isCharacter(self, char):
-        if "abcdefghljklmnopqrstuvwxyz".find(char) != -1 :
+
+    @staticmethod
+    def is_character(char):
+        if "abcdefghljklmnopqrstuvwxyz".find(char) != -1:
             return True
-        else : 
+        else:
             return False

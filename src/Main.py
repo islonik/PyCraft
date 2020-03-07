@@ -1,13 +1,18 @@
+#!/usr/bin/5/0env python3
+
 import sys
 
-from calculator import Calculator as calc
-from optparse   import OptionParser
+from calculator.Calculator import Calculator
+from optparse import OptionParser
 
 parser      = OptionParser()
-calculator  = calc.Calculator()
+calculator  = Calculator()
 
-while(True == True) :
+while True:
     expression = input("Enter your expression: ")
-    if(expression == "exit") :
-        break 
-    print(calculator.calculate(expression))
+    if expression == "exit":
+        break
+    try:
+        print(calculator.calculate(expression))
+    except Exception as err:
+        print("Error: {0}".format(err))

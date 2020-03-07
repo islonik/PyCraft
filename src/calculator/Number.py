@@ -1,19 +1,21 @@
-'''
+"""
 Created on 01.08.2011
 
 @author: Lipatov
-'''
+"""
+
+
 class Number(object):
-    iValue = 0;
-    
+    value = 0
+
     def __init__(self):
-        self.iValue = 0;
-    
-    def getValue(self) :
-        return self.iValue
-    
-    def setValue(self, value):
-        self.iValue = float(value)
-        
-    def invertValue(self):
-        self.iValue = - self.iValue
+        self.value = 0
+
+    def get_value(self):
+        return self.value
+
+    def set_value(self, value):
+        self.value = float(value)
+
+    def invert_value(self):
+        self.value = - self.value
