@@ -2,4 +2,4 @@
 
 My micro Python applications
 
-* mathparser - shows how to do simple math logic in complex expressions
+* [mathparser](mathparser/README.md) - Complex Math parser working from console
