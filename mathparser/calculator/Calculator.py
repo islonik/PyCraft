@@ -159,57 +159,28 @@ class Calculator(object):
             self.__atom(number)
 
     def __atom(self, number):
-        if self.type_token == self.TYPE_NUMBER:
-            number.set_value(self.stored_token)
-            self.__get_token()
-            return
-        elif self.type_token == self.TYPE_FUNCTION:
-            self.__functions(number)
-            return
-        elif self.type_token == self.TYPE_VARIABLE:
-            number.set_value(self.__find_var(self.stored_token))
-            self.__get_token()
-            return
-        else:
-            number.set_value(0.0)
-            raise Exception("Syntax error")
+        match self.type_token:
+            case self.TYPE_NUMBER:
+                number.set_value(self.stored_token)
+                self.__get_token()
+            case self.TYPE_FUNCTION:
+                self.__functions(number)
+            case self.TYPE_VARIABLE:
+                number.set_value(self.__find_var(self.stored_token))
+                self.__get_token()
+            case _:
+                number.set_value(0.0)
+                raise Exception("Syntax error")
 
     def __functions(self, number):
         function_name = self.stored_token
-        if function_name == "abs":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "log10":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "sqrt":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "acos":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "asin":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "atan":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "cos":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "sin":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "tan":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "ceil":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "floor":
-            self.__one_parameter_functions(function_name, number)
-        elif function_name == "pow":
-            self.__two_parameter_functions(function_name, number)
-        elif function_name == "log":
-            self.__two_parameter_functions(function_name, number)
-        elif function_name == "min":
-            self.__multi_parameter_functions(function_name, number)
-        elif function_name == "max":
-            self.__multi_parameter_functions(function_name, number)
-        elif function_name == "avg":
-            self.__multi_parameter_functions(function_name, number)
-        elif function_name == "sum":
-            self.__multi_parameter_functions(function_name, number)
+        match function_name:
+            case "abs" | "log10" | "sqrt" | "acos" | "asin" | "atan" | "cos" | "sin" | "tan" | "ceil" | "floor":
+                self.__one_parameter_functions(function_name, number)
+            case "pow" | "log":
+                self.__two_parameter_functions(function_name, number)
+            case "min" | "max" | "avg" | "sum":
+                self.__multi_parameter_functions(function_name, number)
 
     def __one_parameter_functions(self, function_name, number):
         self.__get_token()
