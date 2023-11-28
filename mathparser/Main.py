@@ -9,8 +9,8 @@ parser      = OptionParser()
 calculator  = Calculator()
 
 while True:
-    expression = input("Enter your expression: ")
-    if expression == "exit":
+    expression = input("Enter your expression: ").strip()
+    if expression == "exit" or expression == "quit" :
         break
     try:
         print(calculator.calculate(expression))
