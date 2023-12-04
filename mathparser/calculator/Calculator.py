@@ -185,34 +185,36 @@ class Calculator(object):
     def __one_parameter_functions(self, function_name, number):
         self.__get_token()
         self.__sixth_step_parsing(number)
-        if function_name == "abs":
-            number.set_value(math.fabs(number.get_value()))
-        elif function_name == "log10":
-            number.set_value(math.log10(number.get_value()))
-        elif function_name == "sqrt":
-            number.set_value(math.sqrt(number.get_value()))
-        elif function_name == "acos":
-            number.set_value(math.acos(self.__grad2rad(number.get_value())))
-        elif function_name == "asin":
-            number.set_value(math.asin(self.__grad2rad(number.get_value())))
-        elif function_name == "atan":
-            number.set_value(math.atan(self.__grad2rad(number.get_value())))
-        elif function_name == "cos":
-            number.set_value(math.cos(self.__grad2rad(number.get_value())))
-        elif function_name == "sin":
-            number.set_value(math.sin(self.__grad2rad(number.get_value())))
-        elif function_name == "tan":
-            number.set_value(math.tan(self.__grad2rad(number.get_value())))
-        elif function_name == "ceil":
-            number.set_value(math.ceil(number.get_value()))
-        elif function_name == "floor":
-            number.set_value(math.floor(number.get_value()))
+        match function_name:
+            case "abs":
+                number.set_value(math.fabs(number.get_value()))
+            case "log10":
+                number.set_value(math.log10(number.get_value()))
+            case "sqrt":
+                number.set_value(math.sqrt(number.get_value()))
+            case "acos":
+                number.set_value(math.acos(self.__grad2rad(number.get_value())))
+            case "asin":
+                number.set_value(math.asin(self.__grad2rad(number.get_value())))
+            case "atan":
+                number.set_value(math.atan(self.__grad2rad(number.get_value())))
+            case "cos":
+                number.set_value(math.cos(self.__grad2rad(number.get_value())))
+            case "sin":
+                number.set_value(math.sin(self.__grad2rad(number.get_value())))
+            case "tan":
+                number.set_value(math.tan(self.__grad2rad(number.get_value())))
+            case "ceil":
+                number.set_value(math.ceil(number.get_value()))
+            case "floor":
+                number.set_value(math.floor(number.get_value()))
 
     def __grad2rad(self, result):
-        if self.typeTangentUnit == self.TYPE_DEGREE:
-            result = result * math.pi / 180
-        elif self.typeTangentUnit == self.TYPE_GRADUS:
-            result = result * math.pi / 200
+        match self.typeTangentUnit:
+            case self.TYPE_DEGREE:
+                result = result * math.pi / 180
+            case self.TYPE_GRADUS:
+                result = result * math.pi / 200
         return result
 
     def __two_parameter_functions(self, function_name, number):
@@ -223,10 +225,11 @@ class Calculator(object):
             self.__get_token()
             temp = Number.Number()
             self.__first_step_parsing(temp)
-            if function_name == "pow":
-                number.set_value(math.pow(number.get_value(), temp.get_value()))
-            elif function_name == "log":
-                number.set_value(math.log(temp.get_value()) / math.log(number.get_value()))
+            match function_name:
+                case "pow":
+                    number.set_value(math.pow(number.get_value(), temp.get_value()))
+                case "log":
+                    number.set_value(math.log(temp.get_value()) / math.log(number.get_value()))
             if self.stored_token == ",":
                 raise Exception("Syntax error")
             elif self.stored_token != ")":
