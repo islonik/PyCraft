@@ -8,8 +8,8 @@ Updated to python 3 and PEP8 on 07.03.2020
 
 import math
 
-from calculator import Number
-from calculator import Variables
+from calculator.Number import Number
+from calculator.Variables import Variables
 
 
 class Calculator(object):
@@ -39,7 +39,7 @@ class Calculator(object):
         self.stored_string = ""
         self.stored_token = ""
         self.type_token = ""
-        self.variables = Variables.Variables()
+        self.variables = Variables()
 
     def calculate(self, expression):
         if len(expression) > 1024:
@@ -49,7 +49,7 @@ class Calculator(object):
         self.__get_token()
         if self.stored_token == "":
             raise Exception("Not found tokens!")
-        result = Number.Number()
+        result = Number()
         self.__first_step_parsing(result)
         return result.get_value()
 
@@ -89,7 +89,7 @@ class Calculator(object):
         token = self.stored_token
         while token == "+" or token == "-":
             self.__get_token()
-            temp = Number.Number()
+            temp = Number()
             self.__third_step_parsing(temp)
             if token == "-":
                 number.set_value(number.get_value() - temp.get_value())
@@ -102,7 +102,7 @@ class Calculator(object):
         token = self.stored_token
         while token == "*" or token == "/" or token == "%":
             self.__get_token()
-            temp = Number.Number()
+            temp = Number()
             self.__fourth_step_parsing(temp)
             if token == "/":
                 if temp.get_value() == 0.0:
@@ -122,7 +122,7 @@ class Calculator(object):
         self.__fifth_step_parsing(number)
         if self.stored_token == "^":
             self.__get_token()
-            temp = Number.Number()
+            temp = Number()
             self.__fourth_step_parsing(temp)
             number.set_value(math.pow(number.get_value(), temp.get_value()))
 
@@ -223,7 +223,7 @@ class Calculator(object):
         self.__first_step_parsing(number)
         if self.stored_token == ",":
             self.__get_token()
-            temp = Number.Number()
+            temp = Number()
             self.__first_step_parsing(temp)
             match function_name:
                 case "pow":
@@ -246,7 +246,7 @@ class Calculator(object):
         while True:
             if self.stored_token == ",":
                 self.__get_token()
-                temp = Number.Number()
+                temp = Number()
                 self.__first_step_parsing(temp)
                 if function_name == "min" and number.get_value() > temp.get_value():
                     number.set_value(temp.get_value())
