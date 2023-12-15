@@ -5,12 +5,12 @@ Created on 02.08.2011
 """
 import unittest
 
-from calculator.Variables import Variables
+from calculator.variables import Variables
 
 
 class VariablesTest(unittest.TestCase):
 
-    def testVariables(self):
+    def test_variables(self):
         variables = Variables()
         variables.add("key1", 5.0)
         self.assertEqual(variables.get("key1"), 5.0)

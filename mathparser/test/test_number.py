@@ -5,12 +5,12 @@ Created on 02.08.2011
 """
 import unittest
 
-from calculator.Number import Number
+from calculator.number import Number
 
 
 class NumberTest(unittest.TestCase):
 
-    def testNumberSetValueGetValue(self):
+    def test_number_set_value_get_value(self):
         temp = Number()
         self.assertEqual(0, temp.get_value())
         temp.set_value("5.0")

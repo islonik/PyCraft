@@ -8,8 +8,8 @@ Updated to python 3 and PEP8 on 07.03.2020
 
 import math
 
-from calculator.Number import Number
-from calculator.Variables import Variables
+from calculator.number import Number
+from calculator.variables import Variables
 
 
 class Calculator(object):

@@ -4,7 +4,6 @@ Created on 01.08.2011
 @author: Lipatov
 """
 
-
 class Number(object):
     value = 0
 
