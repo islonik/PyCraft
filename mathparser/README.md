@@ -5,7 +5,7 @@ MathParser - Top-down parser.
 
 Use command
 ```bash
-python Main.py
+python main.py
 ```
 
 ## How to run all tests
