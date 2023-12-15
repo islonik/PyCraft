@@ -8,7 +8,7 @@ import unittest
 from calculator.variables import Variables
 
 
-class VariablesTest(unittest.TestCase):
+class TestVariables(unittest.TestCase):
 
     def test_variables(self):
         variables = Variables()

@@ -8,7 +8,7 @@ import unittest
 from calculator.number import Number
 
 
-class NumberTest(unittest.TestCase):
+class TestNumber(unittest.TestCase):
 
     def test_number_set_value_get_value(self):
         temp = Number()

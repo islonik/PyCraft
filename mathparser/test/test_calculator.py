@@ -8,7 +8,7 @@ import unittest
 from calculator.calculator import Calculator
 
 
-class CalculatorTest(unittest.TestCase):
+class TestCalculator(unittest.TestCase):
 
     def test_plus(self):
         calc = Calculator()
