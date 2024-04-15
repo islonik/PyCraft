@@ -3,16 +3,14 @@
 {% load static %}
 
 {% block content %}
+<section>
+    <article>
+        <h1 style="text-align: center;">{{item.name}}</h1>
 
-    {% csrf_token %}
-    <h1 style="text-align: center;">Menu</h1>
-    <!--Begin col-->
-
-    {% for item in menu %}
         <div class="container">
             <div class="left-box">
                 <div class="left-upper">
-                    <h2><a href="{% url 'menu_item' pk=item.pk %}" >{{item.name}}</a></h2>
+                    <h2>{{item.name}}</h2>
                     <p>{{item.cuisine}}</p>
                     <p>${{item.price}}</p>
                 </div>
@@ -25,8 +23,7 @@
                 <img src="{% static item.image %}" title="{{item.image_text}}">
             </div>
         </div>
-    {% endfor %}
 
-    <!--End col-->
-
+    </article>
+</section>
 {% endblock %}

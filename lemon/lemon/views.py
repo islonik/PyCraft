@@ -1,26 +1,63 @@
 # views.py in lemon app
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.utils import timezone
+from django.views import View
 from lemon.forms import BookingForm
+from .models import Booking
+from .models import Meal
 
 # Create your views here.
 
-def index(request):
-    return HttpResponse("Hello World From <h2>Lemon</h2> View!")
+# Class-based view
+class BookingView(View):
+    def get(self, request):
+        print("GET from BookingView...")
 
-def booking(request):
-    form = BookingForm()
-    if request.method == 'POST':
-        form = BookingForm(request.POST)
-        if form.is_valid:
-            form.save()
-    context = {"form": form}
-    return render(request, "booking.html", context)
+        booking = BookingForm()
+        return self.render_new_booking(request, booking)
+
+    def post(self, request):
+        print("POST from BookingView...")
+
+        booking = BookingForm(request.POST)
+        if booking.is_valid:
+            booking.save()
+            # create new form
+            booking = BookingForm()
+        return self.render_new_booking(request, booking)
+
+    @classmethod
+    def render_new_booking(self, request, booking):
+        # set initial values
+        now = timezone.now().strftime("%Y-%m-%d")
+        booking.initial["reservation_time"] = now
+        # pass BookingForm object into template
+        context = {"form": booking}
+        return render(request, "booking.html", context)
+
+def bookings(request):
+    booking_items = Booking.objects.all()
+    items_dict = {"booking": booking_items}
+    return render(request, "bookings.html", items_dict)
+
+def index(request):
+    return render(request, "index.html")
 
 def menu(request):
-    context = {"menu": "A drifter claiming to be a Galaxy Ranger. Her true name is unknown, and she walks the cosmos alone, carrying with her a long sword." }
-    return render(request, "menu.html", context)
+    meal_items = Meal.objects.all()
+    items_dict = {"menu": meal_items }
+    return render(request, "menu.html", items_dict)
+
+def menu_item(request, pk):
+    try:
+        item = Meal.objects.get(pk=pk);
+    except Meal.DoesNotExist:
+        print("Meal object doesn't exist for pk = {}".format(pk))
+        item = ""
+    item_dict = {"item": item }
+    return render(request, "menu_item.html", item_dict)
+
 
 def about(request):
-    context = {"about": "Little Lemon is a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist. The chefs draw inspiration from Italian, Greek, and Turkish culture and have a menu of 12–15 items that they rotate seasonally. The restaurant has a rustic and relaxed atmosphere with moderate prices, making it a popular place for a meal any time of the day." }
-    return render(request, "about.html", context)
+    return render(request, "about.html")
