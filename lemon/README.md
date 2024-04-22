@@ -3,6 +3,11 @@
 
 ## How to ...
 
+### How to debug
+
+In Visual Studio Code go to 'Run and Debug' screen on the rigth tab.
+Click 'create a launch.json file' -> Python -> Django -> now you can put your break points -> go to 'Run' on the top -> Start debugging
+
 ### How to setup your project in Visual Studio Code
 
 Install 'SQLite Viewer' on your vs code
