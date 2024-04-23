@@ -8,16 +8,49 @@
 In Visual Studio Code go to 'Run and Debug' screen on the rigth tab.
 Click 'create a launch.json file' -> Python -> Django -> now you can put your break points -> go to 'Run' on the top -> Start debugging
 
+### How to use profiling
+
+1. Install Django debug toolbar
+```bash
+pip3 install django-debug-toolbar
+```
+
+2. Add 'debug_toolbar' in INSTALLED_APPS
+
+3. Add next url in urlpatterns
+```bash
+path('__debug__', include('debug_toolbar.urls')),
+```
+
+4. Include middleware
+```bash
+'debug_toolbar.middleware.DebugToolbarMiddleware',
+```
+
+5. Add below section in settings.py
+```bash
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
+```
+
+6. Profiling should be accessible on the right side API endpoint
+
+
 ### How to setup your project in Visual Studio Code
 
-Install 'SQLite Viewer' on your vs code
+Install 'SQLite Viewer' on your VS code
+
+Install DRF
+```bash
+pip3 install djangorestframework
+```
 
 ### How to create a new app
 
 ```bash
 python manage.py startapp YOUR_APP_NAME
 ```
-
 
 ### How to start up the server
 
