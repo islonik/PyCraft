@@ -13,16 +13,24 @@ from .serializers import MealSerializer
 
 # Create your API here.
 
-# Function-based view
-@api_view(['GET'])
-def meals(request):
-    meals = Meal.objects.all().values();
-    return Response(
-        {"meals": list(meals)},
-        status=status.HTTP_200_OK
-    )
+#-----------------------------
+# Function-based views
+#-----------------------------
+# @api_view(['GET'])
+# def meals(request):
+#     meals = Meal.objects.all().values();
+#     return Response(
+#         meals,
+#         status=status.HTTP_200_OK
+#     )
 
-# Class-based view
+#-----------------------------
+# Class-based views
+#-----------------------------
+class MealsView(generics.ListAPIView):
+    queryset = Meal.objects.all()
+    serializer_class = MealSerializer
+
 class MealView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = Meal.objects.all()
     serializer_class = MealSerializer

@@ -6,7 +6,8 @@ from . import api
 from . import views
 
 urlpatterns = [
-    path("api/v1/menu-items",               api.meals,               name="meals"),
+    # path("api/v1/menu-items",               api.meals,               name="meals"),
+    path("api/v1/menu-items",               api.MealsView.as_view()),
     path("api/v1/menu-items/<int:pk>/",     api.MealView.as_view()),
     path("",                                views.index,             name='index'),
     path("index/",                          views.index,             name='index'),
