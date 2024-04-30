@@ -7,9 +7,10 @@ from rest_framework import status, serializers, generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from rest_framework.authentication import TokenAuthentication
 
-from .models import Meal
-from .serializers import MealSerializer
+from ..models import Meal
+from ..serializers import MealSerializer
 
 # Create your API here.
 
@@ -28,12 +29,18 @@ from .serializers import MealSerializer
 # Class-based views
 #-----------------------------
 class MealsView(generics.ListAPIView):
+    # limit HTTP methods
+    http_method_names = ['get']
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
+    # Below line to give token authority
+    authentication_classes = (TokenAuthentication,)
 
 class MealView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
+    # Below line to give token authority
+    authentication_classes = (TokenAuthentication,)
     # def get(self, request, pk):
     #     try:
     #         item = Meal.objects.get(pk=pk);

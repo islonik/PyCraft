@@ -2,13 +2,13 @@
 from django.urls import path, include
 from lemon.views import BookingView
 
-from . import api
+from .api.menu_items import MealView, MealsView
 from . import views
 
 urlpatterns = [
     # path("api/v1/menu-items",               api.meals,               name="meals"),
-    path("api/v1/menu-items",               api.MealsView.as_view()),
-    path("api/v1/menu-items/<int:pk>/",     api.MealView.as_view(),  name='menu-item-view'),
+    path("api/v1/menu-items",               MealsView.as_view()),
+    path("api/v1/menu-items/<int:pk>/",     MealView.as_view(),  name='menu-item-view'),
     path("",                                views.index,             name='index'),
     path("index/",                          views.index,             name='index'),
     path('about/',                          views.about,             name='about'),

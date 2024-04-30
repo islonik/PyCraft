@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lemon.apps.LemonConfig', # my config
     'rest_framework', # Django Rest Framework (DRF)
+    'rest_framework.authtoken',
+    # djoser should be after rest_framework
+    'djoser', # use djoser to generate auth endpoints
     'debug_toolbar', # Django debug toolbar
 ]
 
@@ -133,3 +136,19 @@ INTERNAL_IPS = [
     '127.0.0.1'
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication', # to use with djoser
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon':'2/minute',
+        'user':'5/minute',
+        'ten':'10/minute'
+    }
+}
+
+DJOSER = {
+    "USER_ID_FIELD": "username",
+    "LOGIN_FIELD": "email"
+}
