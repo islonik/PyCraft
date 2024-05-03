@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lemon.apps.LemonConfig', # my config
-    'rest_framework', # Django Rest Framework (DRF)
+    # Django Rest Framework (DRF)
+    'rest_framework',
+    # need to auth token authorization support and Tokens table
     'rest_framework.authtoken',
+    'django_filters',
     # djoser should be after rest_framework
     'djoser', # use djoser to generate auth endpoints
     'debug_toolbar', # Django debug toolbar
@@ -137,6 +140,12 @@ INTERNAL_IPS = [
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'rest_framework.filters.OrderingFilter',
+        'rest_framework.filters.SearchFilter',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 2,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication', # to use with djoser

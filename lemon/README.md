@@ -1,5 +1,10 @@
 # Little Lemon Backend in Python
 
+Default test users:
+admin - admin - fc7033f3e9a75a22f2951504c44188f671468d13
+manager - man12345 - 7c837a4d4a50d65dccaa6ba7acb25e12ea959703
+delivery - del12345 - 7e586f9722485180d4d13e3245a8e4df69a8d794
+customer - cust12345 - 6cb63cf21cba4dfc4aee9cc83ef64cce32f59e90
 
 ## How to ...
 
