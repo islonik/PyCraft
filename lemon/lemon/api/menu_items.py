@@ -27,6 +27,8 @@ from ..serializers import MealSerializer
 #         meals,
 #         status=status.HTTP_200_OK
 #     )
+def access_denied():
+    return HttpResponseForbidden("Access denied. You are not a manager")
 
 #-----------------------------
 # Class-based views
@@ -34,7 +36,7 @@ from ..serializers import MealSerializer
 @permission_classes([IsAuthenticated])
 class MealsView(generics.CreateAPIView, generics.ListAPIView):
     # limit HTTP methods
-    #http_method_names = ['get']
+    http_method_names = ['get', 'put', 'post', 'patch', 'delete']
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
     # specifies used authentication classes
@@ -44,14 +46,25 @@ class MealsView(generics.CreateAPIView, generics.ListAPIView):
     # ordering
     ordering_fields = ['id', 'price']
 
+    def put(self, request, *args, **kwargs):
+        return access_denied()
+
     def post(self, request, *args, **kwargs):
         if (request.user.groups.filter(name='Manager')).exists():
             return self.create(request, *args, **kwargs)
         else:
-            return HttpResponseForbidden("Access denied. You are not a manager")
+            return access_denied()
+
+    def patch(self, request, *args, **kwargs):
+        return access_denied()
+
+    def delete(self, request, *args, **kwargs):
+        return access_denied()
 
 @permission_classes([IsAuthenticated])
 class MealView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
+    # limit HTTP methods
+    http_method_names = ['get', 'put', 'patch', 'delete']
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
     # specifies used authentication classes
@@ -61,19 +74,19 @@ class MealView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
         if (request.user.groups.filter(name='Manager')).exists():
             return super().put(request, *args, **kwargs)
         else:
-            return HttpResponseForbidden("Access denied. You are not a manager")
+            return access_denied()
 
     def patch(self, request, *args, **kwargs):
         if (request.user.groups.filter(name='Manager')).exists():
             return super().patch(request, *args, **kwargs)
         else:
-            return HttpResponseForbidden("Access denied. You are not a manager")
+            return access_denied()
 
     def delete(self, request, *args, **kwargs):
         if (request.user.groups.filter(name='Manager')).exists():
             return super().delete(request, *args, **kwargs)
         else:
-            return HttpResponseForbidden("Access denied. You are not a manager")
+            return access_denied()
     # def get(self, request, pk):
     #     try:
     #         item = Meal.objects.get(pk=pk);
