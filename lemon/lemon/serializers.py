@@ -2,14 +2,13 @@ from rest_framework import serializers
 
 from django.contrib.auth import get_user_model
 
-from .models import Cuisine
-from .models import Meal
+from .models import Cart, Cuisine, Meal
 
 # Allows to display the name of cuisine for Meal
 class CuisineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cuisine
-        fields = ['name']#'__all__'
+        fields = ['name']
 
 class MealSerializer(serializers.ModelSerializer):
     # Could add a hyperlink instead of int id
@@ -50,3 +49,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [User._meta.pk.name, User.USERNAME_FIELD, 'first_name', 'last_name', 'email', 'is_active']
+
+class CartSerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField()
+    meal_id = serializers.IntegerField()
+    class Meta:
+        model = Cart
+        fields = ['id', 'user_id', 'meal_id', 'count']

@@ -3,15 +3,13 @@
 import json
 
 from django.contrib.auth.models import User, Group
-#from django.contrib.auth import User
 from django.core.exceptions import PermissionDenied
 from django.db import IntegrityError
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
-#from djoser.serializers import UserSerializer
 
 from rest_framework import status, serializers, generics
-from rest_framework.authentication import BasicAuthentication, TokenAuthentication, SessionAuthentication
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response

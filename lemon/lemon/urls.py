@@ -2,9 +2,9 @@
 from django.urls import path, include
 from lemon.views import BookingView
 
+from .api.cart import CartsView
 from .api.menu_items import MealView, MealsView
 from .api.user_groups import ManagersView, ManagerView, DeliveryCrewView, DeliveryPersonView
-#from .api.user_groups import manager_view
 from . import views
 from rest_framework.authtoken.views import obtain_auth_token
 
@@ -17,8 +17,11 @@ urlpatterns = [
     #-------------------------
     # API
     #-------------------------
+    path("api/cart/menu-items",                      CartsView.as_view()),
+
     path("api/menu-items",                           MealsView.as_view()),
     path("api/menu-items/<int:pk>/",                 MealView.as_view(),           name='menu-item-view'),
+
     path("api/groups/manager/users",                 ManagersView.as_view()),
     path("api/groups/manager/users/<int:pk>/",       ManagerView.as_view(),        name='manager-view'),
     path("api/groups/delivery-crew/users",           DeliveryCrewView.as_view()),
