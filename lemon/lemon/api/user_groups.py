@@ -1,4 +1,3 @@
-
 # api/user_groups.py in lemon app
 import json
 

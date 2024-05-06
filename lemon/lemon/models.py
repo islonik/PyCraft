@@ -42,3 +42,28 @@ class Cart(models.Model):
     def __str__(self):
         return f"{self.user} - {self.meal} - {self.count}"
 
+class Order(models.Model):
+    customer = models.ForeignKey(User, related_name='customer', on_delete = models.PROTECT)
+    delivery = models.ForeignKey(User, related_name='delivery', on_delete = models.PROTECT, null=True)
+    status = models.IntegerField(default = -1)
+
+    # also show it in admin panel
+    def __str__(self):
+        st_text = ""
+        if self.status == -1:
+            st_text = "Not assigned"
+        elif self.status == 0:
+            st_text = "Out for delivery"
+        else:
+            st_text = "Delivered"
+        return f"Order '{self.id}' for {self.customer} has status '{st_text}'. Assigned to {self.delivery}"
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete = models.PROTECT)
+    meal = models.ForeignKey(Meal, on_delete = models.PROTECT)
+    count = models.IntegerField()
+
+    # also show it in admin panel
+    def __str__(self):
+        return f"{self.order} - {self.meal} - {self.count}"
+

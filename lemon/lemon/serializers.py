@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from django.contrib.auth import get_user_model
 
-from .models import Cart, Cuisine, Meal
+from .models import Cart, Cuisine, Meal, Order, OrderItem
 
 # Allows to display the name of cuisine for Meal
 class CuisineSerializer(serializers.ModelSerializer):
@@ -56,3 +56,22 @@ class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
         fields = ['user_id', 'meal_id', 'count']
+
+class OrderSerializer(serializers.ModelSerializer):
+    id = serializers.HyperlinkedRelatedField(many=False, view_name='order-item-view', read_only=True)
+    customer_id = serializers.IntegerField()
+    delivery_id = serializers.IntegerField()
+    status = serializers.CharField()
+
+    class Meta:
+        model = Order
+        fields = ['id', 'customer_id', 'delivery_id', 'status']
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    order_id = serializers.IntegerField()
+    meal_id = serializers.IntegerField()
+    count = serializers.IntegerField()
+
+    class Meta:
+        model = OrderItem
+        fields = ['order_id', 'meal_id', 'count']

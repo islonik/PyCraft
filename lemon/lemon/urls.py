@@ -4,6 +4,7 @@ from lemon.views import BookingView
 
 from .api.cart import CartsView
 from .api.menu_items import MealView, MealsView
+from .api.orders import OrdersView, OrderView
 from .api.user_groups import ManagersView, ManagerView, DeliveryCrewView, DeliveryPersonView
 from . import views
 from rest_framework.authtoken.views import obtain_auth_token
@@ -21,6 +22,9 @@ urlpatterns = [
 
     path("api/menu-items",                           MealsView.as_view()),
     path("api/menu-items/<int:pk>/",                 MealView.as_view(),           name='menu-item-view'),
+
+    path("api/orders",                               OrdersView.as_view()),
+    path("api/orders/<int:pk>/",                     OrderView.as_view(),          name='order-item-view'),
 
     path("api/groups/manager/users",                 ManagersView.as_view()),
     path("api/groups/manager/users/<int:pk>/",       ManagerView.as_view(),        name='manager-view'),
