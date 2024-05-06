@@ -55,4 +55,4 @@ class CartSerializer(serializers.ModelSerializer):
     meal_id = serializers.IntegerField()
     class Meta:
         model = Cart
-        fields = ['id', 'user_id', 'meal_id', 'count']
+        fields = ['user_id', 'meal_id', 'count']

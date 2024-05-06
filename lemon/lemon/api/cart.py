@@ -3,6 +3,7 @@ from rest_framework import status, serializers, generics
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 from rest_framework.response import Response
 
 from ..models import Cart
@@ -18,6 +19,8 @@ from ..serializers import CartSerializer
 #-------------------------
 @permission_classes([IsAuthenticated])
 class CartsView(generics.CreateAPIView, generics.ListAPIView, generics.DestroyAPIView):
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]
+    # limit HTTP methods
     http_method_names = ['get', 'post', 'delete']
 
     queryset = Cart.objects.all()

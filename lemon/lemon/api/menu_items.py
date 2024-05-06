@@ -9,6 +9,7 @@ from rest_framework.authentication import BasicAuthentication, TokenAuthenticati
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 from rest_framework.views import APIView
 
 
@@ -35,6 +36,7 @@ def access_denied():
 #-----------------------------
 @permission_classes([IsAuthenticated])
 class MealsView(generics.CreateAPIView, generics.ListAPIView):
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['get', 'put', 'post', 'patch', 'delete']
     queryset = Meal.objects.all()
@@ -63,6 +65,7 @@ class MealsView(generics.CreateAPIView, generics.ListAPIView):
 
 @permission_classes([IsAuthenticated])
 class MealView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['get', 'put', 'patch', 'delete']
     queryset = Meal.objects.all()

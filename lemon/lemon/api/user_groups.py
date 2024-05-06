@@ -13,6 +13,7 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 from rest_framework.views import APIView
 
 from ..serializers import UserSerializer
@@ -64,6 +65,8 @@ def remove_from_group(the_group, **kwargs):
 #-------------------------
 @permission_classes([IsAuthenticated])
 class ManagersView(generics.ListAPIView):
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]
+    # limit HTTP methods
     http_method_names = ['get', 'post']
     queryset = User.objects.values()
     queryset = queryset.filter(groups__name__in=['Manager'])
@@ -85,6 +88,7 @@ class ManagersView(generics.ListAPIView):
 
 @permission_classes([IsAuthenticated])
 class ManagerView(generics.DestroyAPIView):
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['delete']
     queryset = User.objects.values()
@@ -101,6 +105,8 @@ class ManagerView(generics.DestroyAPIView):
 
 @permission_classes([IsAuthenticated])
 class DeliveryCrewView(generics.ListAPIView):
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]
+    # limit HTTP methods
     http_method_names = ['get', 'post']
     queryset = User.objects.values()
     queryset = queryset.filter(groups__name__in=['DeliveryCrew'])
@@ -122,6 +128,7 @@ class DeliveryCrewView(generics.ListAPIView):
 
 @permission_classes([IsAuthenticated])
 class DeliveryPersonView(generics.DestroyAPIView):
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['delete']
     queryset = User.objects.values()
