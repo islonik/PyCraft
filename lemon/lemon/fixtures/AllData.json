@@ -1,0 +1,1275 @@
+[
+    {
+      "model": "admin.logentry",
+      "pk": 1,
+      "fields": {
+        "action_time": "2024-05-07T18:01:26.805Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "American",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 2,
+      "fields": {
+        "action_time": "2024-05-07T18:01:34.150Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "Italian",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 3,
+      "fields": {
+        "action_time": "2024-05-07T18:01:39.273Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "Japanese",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 4,
+      "fields": {
+        "action_time": "2024-05-07T18:04:49.107Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "Main",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 5,
+      "fields": {
+        "action_time": "2024-05-07T18:05:07.511Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "Dessert",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 6,
+      "fields": {
+        "action_time": "2024-05-07T18:05:15.014Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "Drink",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 7,
+      "fields": {
+        "action_time": "2024-05-07T18:05:45.477Z",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "1",
+        "object_repr": "Manager",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 8,
+      "fields": {
+        "action_time": "2024-05-07T18:05:54.986Z",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "2",
+        "object_repr": "DeliveryCrew",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 9,
+      "fields": {
+        "action_time": "2024-05-07T18:07:02.810Z",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "1",
+        "object_repr": "Manager",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 10,
+      "fields": {
+        "action_time": "2024-05-07T18:07:24.288Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "2",
+        "object_repr": "manager",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 11,
+      "fields": {
+        "action_time": "2024-05-07T18:07:53.598Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "2",
+        "object_repr": "manager",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\", \"Groups\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 12,
+      "fields": {
+        "action_time": "2024-05-07T18:08:14.855Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "3",
+        "object_repr": "delivery",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 13,
+      "fields": {
+        "action_time": "2024-05-07T18:08:32.513Z",
+        "user": 1,
+        "content_type": 4,
+        "object_id": "3",
+        "object_repr": "delivery",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Groups\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 14,
+      "fields": {
+        "action_time": "2024-05-07T18:19:05.539Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "Bruschetta - 7.35",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 15,
+      "fields": {
+        "action_time": "2024-05-07T18:19:21.133Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "Bruschetta - 7.35",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 16,
+      "fields": {
+        "action_time": "2024-05-07T18:21:33.656Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "2",
+        "object_repr": "Burger - 12.50",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 17,
+      "fields": {
+        "action_time": "2024-05-07T18:23:06.726Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "Greek salad - 8.25",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 18,
+      "fields": {
+        "action_time": "2024-05-07T18:25:37.264Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "4",
+        "object_repr": "Grilled fish - 15.99",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 19,
+      "fields": {
+        "action_time": "2024-05-07T18:26:01.980Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "4",
+        "object_repr": "Grilled fish - 15.99",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 20,
+      "fields": {
+        "action_time": "2024-05-07T18:27:32.727Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "5",
+        "object_repr": "Lemon dessert - 8.99",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 21,
+      "fields": {
+        "action_time": "2024-05-07T18:28:13.545Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "Appetizer",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 22,
+      "fields": {
+        "action_time": "2024-05-07T18:28:22.593Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "1",
+        "object_repr": "Bruschetta - 7.35",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Category\"]}}]"
+      }
+    },
+    {
+      "model": "admin.logentry",
+      "pk": 23,
+      "fields": {
+        "action_time": "2024-05-07T18:28:29.950Z",
+        "user": 1,
+        "content_type": 10,
+        "object_id": "3",
+        "object_repr": "Greek salad - 8.25",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Category\"]}}]"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 1,
+      "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 2,
+      "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 3,
+      "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 4,
+      "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 5,
+      "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 6,
+      "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 7,
+      "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 8,
+      "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 9,
+      "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 10,
+      "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 11,
+      "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 12,
+      "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 13,
+      "fields": {
+        "name": "Can add user",
+        "content_type": 4,
+        "codename": "add_user"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 14,
+      "fields": {
+        "name": "Can change user",
+        "content_type": 4,
+        "codename": "change_user"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 15,
+      "fields": {
+        "name": "Can delete user",
+        "content_type": 4,
+        "codename": "delete_user"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 16,
+      "fields": {
+        "name": "Can view user",
+        "content_type": 4,
+        "codename": "view_user"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 17,
+      "fields": {
+        "name": "Can add content type",
+        "content_type": 5,
+        "codename": "add_contenttype"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 18,
+      "fields": {
+        "name": "Can change content type",
+        "content_type": 5,
+        "codename": "change_contenttype"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 19,
+      "fields": {
+        "name": "Can delete content type",
+        "content_type": 5,
+        "codename": "delete_contenttype"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 20,
+      "fields": {
+        "name": "Can view content type",
+        "content_type": 5,
+        "codename": "view_contenttype"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 21,
+      "fields": {
+        "name": "Can add session",
+        "content_type": 6,
+        "codename": "add_session"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 22,
+      "fields": {
+        "name": "Can change session",
+        "content_type": 6,
+        "codename": "change_session"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 23,
+      "fields": {
+        "name": "Can delete session",
+        "content_type": 6,
+        "codename": "delete_session"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 24,
+      "fields": {
+        "name": "Can view session",
+        "content_type": 6,
+        "codename": "view_session"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 25,
+      "fields": {
+        "name": "Can add booking",
+        "content_type": 7,
+        "codename": "add_booking"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 26,
+      "fields": {
+        "name": "Can change booking",
+        "content_type": 7,
+        "codename": "change_booking"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 27,
+      "fields": {
+        "name": "Can delete booking",
+        "content_type": 7,
+        "codename": "delete_booking"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 28,
+      "fields": {
+        "name": "Can view booking",
+        "content_type": 7,
+        "codename": "view_booking"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 29,
+      "fields": {
+        "name": "Can add category",
+        "content_type": 8,
+        "codename": "add_category"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 30,
+      "fields": {
+        "name": "Can change category",
+        "content_type": 8,
+        "codename": "change_category"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 31,
+      "fields": {
+        "name": "Can delete category",
+        "content_type": 8,
+        "codename": "delete_category"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 32,
+      "fields": {
+        "name": "Can view category",
+        "content_type": 8,
+        "codename": "view_category"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 33,
+      "fields": {
+        "name": "Can add cuisine",
+        "content_type": 9,
+        "codename": "add_cuisine"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 34,
+      "fields": {
+        "name": "Can change cuisine",
+        "content_type": 9,
+        "codename": "change_cuisine"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 35,
+      "fields": {
+        "name": "Can delete cuisine",
+        "content_type": 9,
+        "codename": "delete_cuisine"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 36,
+      "fields": {
+        "name": "Can view cuisine",
+        "content_type": 9,
+        "codename": "view_cuisine"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 37,
+      "fields": {
+        "name": "Can add meal",
+        "content_type": 10,
+        "codename": "add_meal"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 38,
+      "fields": {
+        "name": "Can change meal",
+        "content_type": 10,
+        "codename": "change_meal"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 39,
+      "fields": {
+        "name": "Can delete meal",
+        "content_type": 10,
+        "codename": "delete_meal"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 40,
+      "fields": {
+        "name": "Can view meal",
+        "content_type": 10,
+        "codename": "view_meal"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 41,
+      "fields": {
+        "name": "Can add order",
+        "content_type": 11,
+        "codename": "add_order"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 42,
+      "fields": {
+        "name": "Can change order",
+        "content_type": 11,
+        "codename": "change_order"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 43,
+      "fields": {
+        "name": "Can delete order",
+        "content_type": 11,
+        "codename": "delete_order"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 44,
+      "fields": {
+        "name": "Can view order",
+        "content_type": 11,
+        "codename": "view_order"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 45,
+      "fields": {
+        "name": "Can add cart",
+        "content_type": 12,
+        "codename": "add_cart"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 46,
+      "fields": {
+        "name": "Can change cart",
+        "content_type": 12,
+        "codename": "change_cart"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 47,
+      "fields": {
+        "name": "Can delete cart",
+        "content_type": 12,
+        "codename": "delete_cart"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 48,
+      "fields": {
+        "name": "Can view cart",
+        "content_type": 12,
+        "codename": "view_cart"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 49,
+      "fields": {
+        "name": "Can add order item",
+        "content_type": 13,
+        "codename": "add_orderitem"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 50,
+      "fields": {
+        "name": "Can change order item",
+        "content_type": 13,
+        "codename": "change_orderitem"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 51,
+      "fields": {
+        "name": "Can delete order item",
+        "content_type": 13,
+        "codename": "delete_orderitem"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 52,
+      "fields": {
+        "name": "Can view order item",
+        "content_type": 13,
+        "codename": "view_orderitem"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 53,
+      "fields": {
+        "name": "Can add Token",
+        "content_type": 14,
+        "codename": "add_token"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 54,
+      "fields": {
+        "name": "Can change Token",
+        "content_type": 14,
+        "codename": "change_token"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 55,
+      "fields": {
+        "name": "Can delete Token",
+        "content_type": 14,
+        "codename": "delete_token"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 56,
+      "fields": {
+        "name": "Can view Token",
+        "content_type": 14,
+        "codename": "view_token"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 57,
+      "fields": {
+        "name": "Can add Token",
+        "content_type": 15,
+        "codename": "add_tokenproxy"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 58,
+      "fields": {
+        "name": "Can change Token",
+        "content_type": 15,
+        "codename": "change_tokenproxy"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 59,
+      "fields": {
+        "name": "Can delete Token",
+        "content_type": 15,
+        "codename": "delete_tokenproxy"
+      }
+    },
+    {
+      "model": "auth.permission",
+      "pk": 60,
+      "fields": {
+        "name": "Can view Token",
+        "content_type": 15,
+        "codename": "view_tokenproxy"
+      }
+    },
+    {
+      "model": "auth.group",
+      "pk": 1,
+      "fields": {
+        "name": "Manager",
+        "permissions": [
+          16,
+          56,
+          60,
+          28,
+          48,
+          32,
+          36,
+          40,
+          44,
+          52,
+          24
+        ]
+      }
+    },
+    {
+      "model": "auth.group",
+      "pk": 2,
+      "fields": {
+        "name": "DeliveryCrew",
+        "permissions": []
+      }
+    },
+    {
+      "model": "auth.user",
+      "pk": 1,
+      "fields": {
+        "password": "pbkdf2_sha256$720000$0eGNqRBvYCEp5MgGveliFq$+6fv8HLElr3nQGCMEIfWUIrWOQbenfJf1jjuxpj8E+s=",
+        "last_login": "2024-05-07T20:28:09.169Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@admin.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-05-07T17:57:56.310Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "auth.user",
+      "pk": 2,
+      "fields": {
+        "password": "pbkdf2_sha256$720000$owtKllnV1HPqT4FZqYPNOC$ZGKMV1Dk4+t8bmM0aqoK7EVpBUseWvVL/Kn7JV/AAh4=",
+        "last_login": "2024-05-07T20:29:37.995Z",
+        "is_superuser": false,
+        "username": "manager",
+        "first_name": "Eve",
+        "last_name": "Blade",
+        "email": "eve@blade.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-05-07T18:07:24Z",
+        "groups": [
+          1
+        ],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "auth.user",
+      "pk": 3,
+      "fields": {
+        "password": "pbkdf2_sha256$720000$BEERp539gwN5G1lz6eVr6N$NzcSsSXLfrK1YpOMzesCjj9d9aEuPzgRLMVwM8LETiM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "delivery",
+        "first_name": "Adam",
+        "last_name": "Blade",
+        "email": "adam@blade.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-07T18:08:14Z",
+        "groups": [
+          2
+        ],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "auth.user",
+      "pk": 4,
+      "fields": {
+        "password": "pbkdf2_sha256$720000$TfilJ6ejZEX8pN2yx5xewG$NZmlHknnW6jG0BA+dOd14wUFAxWp4umwBz4+CH60up0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "customer1",
+        "first_name": "",
+        "last_name": "",
+        "email": "customer1@customer1.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-07T18:10:45.739Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "auth.user",
+      "pk": 5,
+      "fields": {
+        "password": "pbkdf2_sha256$720000$7YFZnKqhTNKuR3TbLENCPm$txzWitJAmgZ6AeRsKizb+RuF1t3x5FYB6qyINHeMKDg=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "customer2",
+        "first_name": "",
+        "last_name": "",
+        "email": "customer2@customer2.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-07T18:11:11.893Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "auth.user",
+      "pk": 6,
+      "fields": {
+        "password": "pbkdf2_sha256$720000$HWAR4RtOvB1atzeHSxCgFU$azL1G2dqGNI4eEzrnyO++M8WIZkUEGy0pw6tv52oehY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "customer3",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-05-07T19:05:54.979Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 1,
+      "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 2,
+      "fields": {
+        "app_label": "auth",
+        "model": "permission"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 3,
+      "fields": {
+        "app_label": "auth",
+        "model": "group"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 4,
+      "fields": {
+        "app_label": "auth",
+        "model": "user"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 5,
+      "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 6,
+      "fields": {
+        "app_label": "sessions",
+        "model": "session"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 7,
+      "fields": {
+        "app_label": "lemon",
+        "model": "booking"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 8,
+      "fields": {
+        "app_label": "lemon",
+        "model": "category"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 9,
+      "fields": {
+        "app_label": "lemon",
+        "model": "cuisine"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 10,
+      "fields": {
+        "app_label": "lemon",
+        "model": "meal"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 11,
+      "fields": {
+        "app_label": "lemon",
+        "model": "order"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 12,
+      "fields": {
+        "app_label": "lemon",
+        "model": "cart"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 13,
+      "fields": {
+        "app_label": "lemon",
+        "model": "orderitem"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 14,
+      "fields": {
+        "app_label": "authtoken",
+        "model": "token"
+      }
+    },
+    {
+      "model": "contenttypes.contenttype",
+      "pk": 15,
+      "fields": {
+        "app_label": "authtoken",
+        "model": "tokenproxy"
+      }
+    },
+    {
+      "model": "sessions.session",
+      "pk": "vopvr7k7msen9m15j9qitcf30u3vg9xy",
+      "fields": {
+        "session_data": ".eJxVjDsOwjAQBe_iGlnr3fhHSZ8zROsPOIBsKU4qxN0hUgpo38y8l5h4W8u09bxMcxJngeL0uwWOj1x3kO5cb03GVtdlDnJX5EG7HFvKz8vh_h0U7uVbK8uWIBGwAcs-Kw2APhB4C0ADM7khYEKFaJxJ5JhAW1TxajRycOL9AaGKNik:1s4RRS:fh2irglq3MEM-NnMhMpvAuB4aHwgx_WhZUnatSYhw5Q",
+        "expire_date": "2024-05-21T20:29:38.006Z"
+      }
+    },
+    {
+      "model": "lemon.category",
+      "pk": 1,
+      "fields": {
+        "slug": "main",
+        "title": "Main"
+      }
+    },
+    {
+      "model": "lemon.category",
+      "pk": 2,
+      "fields": {
+        "slug": "dessert",
+        "title": "Dessert"
+      }
+    },
+    {
+      "model": "lemon.category",
+      "pk": 3,
+      "fields": {
+        "slug": "drink",
+        "title": "Drink"
+      }
+    },
+    {
+      "model": "lemon.category",
+      "pk": 4,
+      "fields": {
+        "slug": "appetizer",
+        "title": "Appetizer"
+      }
+    },
+    {
+      "model": "lemon.cuisine",
+      "pk": 1,
+      "fields": {
+        "name": "American"
+      }
+    },
+    {
+      "model": "lemon.cuisine",
+      "pk": 2,
+      "fields": {
+        "name": "Italian"
+      }
+    },
+    {
+      "model": "lemon.cuisine",
+      "pk": 3,
+      "fields": {
+        "name": "Japanese"
+      }
+    },
+    {
+      "model": "lemon.meal",
+      "pk": 1,
+      "fields": {
+        "name": "Bruschetta",
+        "cuisine": 2,
+        "category": 4,
+        "price": "7.35",
+        "desc": "Bruschetta is an Italian antipasto consisting of grilled bread often topped with olive oil and salt. Most commonly it is served with toppings of tomato, vegetables, beans, cured meat, and/or cheese. In Italy, bruschetta is often prepared using a brustolina grill.",
+        "image": "/img/menu_items/Bruschetta.jpg",
+        "image_text": "Bruschetta"
+      }
+    },
+    {
+      "model": "lemon.meal",
+      "pk": 2,
+      "fields": {
+        "name": "Burger",
+        "cuisine": 1,
+        "category": 1,
+        "price": "12.50",
+        "desc": "“Black Dog” burger features bone marrow butter, burger cheese, Lawson black pudding, caramelised onion, pickles, and burger sauce—a truly drool-worthy combination. They also offer unique options like the “Top Dog” burger with bone marrow and Roquefort butter, double bacon, caramelised onions and black truffle mayo, and the “NYC” burger with pastrami. They also have a veggie and vegan option – the Simplicity Burger and three varieties of fries.",
+        "image": "/img/menu_items/Burger.jpg",
+        "image_text": "Burger"
+      }
+    },
+    {
+      "model": "lemon.meal",
+      "pk": 3,
+      "fields": {
+        "name": "Greek salad",
+        "cuisine": 2,
+        "category": 4,
+        "price": "8.25",
+        "desc": "Greek salad or horiatiki salad is a popular salad in Greek cuisine generally made with pieces of tomatoes, cucumbers, onion, feta cheese, and olives and dressed with salt, Greek oregano, lemon juice and olive oil. Common additions include green bell pepper slices or caper berries.",
+        "image": "/img/menu_items/Greek salad.jpg",
+        "image_text": "Greek salad"
+      }
+    },
+    {
+      "model": "lemon.meal",
+      "pk": 4,
+      "fields": {
+        "name": "Grilled fish",
+        "cuisine": 3,
+        "category": 1,
+        "price": "15.99",
+        "desc": "Grilled fish is a delectable dish that combines fresh, high-quality fish with the smoky, savory flavors of an open flame or grill. The process typically begins with selecting a firm, fresh fish such as salmon, trout, or seabass. The fish is cleaned, scaled, and sometimes marinated with a mixture of herbs, spices, lemon juice, or other seasonings to enhance its natural flavors.\r\n\r\nGrilling fish requires careful attention to cooking time and temperature to avoid drying it out. Fish can be grilled whole, in fillets, or as steaks. When grilling whole fish, slits may be made in the flesh to allow seasonings to penetrate, and lemon or herbs can be inserted into the cavity for added flavor.\r\n\r\nThe grilling process imparts a smoky, charred taste and crispy exterior, while keeping the interior tender and juicy. Grilled fish pairs well with a variety of sides such as roasted vegetables, rice, or salads, making it a healthy and delicious meal option.",
+        "image": "/img/menu_items/Grilled fish.jpg",
+        "image_text": "Grilled fish"
+      }
+    },
+    {
+      "model": "lemon.meal",
+      "pk": 5,
+      "fields": {
+        "name": "Lemon dessert",
+        "cuisine": 2,
+        "category": 2,
+        "price": "8.99",
+        "desc": "Lemon dessert is a refreshing and zesty treat that highlights the bright, tangy flavor of lemons. Popular options include lemon bars, lemon meringue pie, and lemon sorbet. These desserts often combine lemon juice and zest with sugar and eggs to create a delightful balance of sweet and tart flavors.",
+        "image": "/img/menu_items/Lemon dessert.jpg",
+        "image_text": "Lemon dessert"
+      }
+    },
+    {
+      "model": "authtoken.token",
+      "pk": "29577774b1ad9c48b8a67e5d73dc4be7a9b5c404",
+      "fields": {
+        "user": 6,
+        "created": "2024-05-07T19:06:17.284Z"
+      }
+    },
+    {
+      "model": "authtoken.token",
+      "pk": "38a8b93e2e8e05b2514461ebe8626fe58bec5c36",
+      "fields": {
+        "user": 5,
+        "created": "2024-05-07T18:16:07.418Z"
+      }
+    },
+    {
+      "model": "authtoken.token",
+      "pk": "6f477c2c557637d58e7b94d44372500895f0f466",
+      "fields": {
+        "user": 1,
+        "created": "2024-05-07T18:14:33.683Z"
+      }
+    },
+    {
+      "model": "authtoken.token",
+      "pk": "9ea2c033ab5318498bbd77cb8716e35980aac359",
+      "fields": {
+        "user": 3,
+        "created": "2024-05-07T18:15:36.997Z"
+      }
+    },
+    {
+      "model": "authtoken.token",
+      "pk": "a399e4820d4a696b8914353eac8d17ca788af4bd",
+      "fields": {
+        "user": 4,
+        "created": "2024-05-07T18:15:51.814Z"
+      }
+    },
+    {
+      "model": "authtoken.token",
+      "pk": "a85abe70805618fb73e65f53eddb56639b25da13",
+      "fields": {
+        "user": 2,
+        "created": "2024-05-07T18:14:49.908Z"
+      }
+    }
+  ]

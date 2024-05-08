@@ -1,10 +1,12 @@
 # Little Lemon Backend in Python
 
-Default test users:
-admin - admin - fc7033f3e9a75a22f2951504c44188f671468d13
-manager - man12345 - 7c837a4d4a50d65dccaa6ba7acb25e12ea959703
-delivery - del12345 - 7e586f9722485180d4d13e3245a8e4df69a8d794
-customer - cust12345 - 6cb63cf21cba4dfc4aee9cc83ef64cce32f59e90
+Default users:
+admin - admin - 6f477c2c557637d58e7b94d44372500895f0f466
+manager - man12345 - a85abe70805618fb73e65f53eddb56639b25da13
+delivery - del12345 - 9ea2c033ab5318498bbd77cb8716e35980aac359
+customer1 - cust12341 - a399e4820d4a696b8914353eac8d17ca788af4bd
+customer2 - cust12342 - 38a8b93e2e8e05b2514461ebe8626fe58bec5c36
+customer3 - cust12343 - 29577774b1ad9c48b8a67e5d73dc4be7a9b5c404
 
 ## How to ...
 

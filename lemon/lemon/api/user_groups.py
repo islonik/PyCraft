@@ -21,10 +21,8 @@ def access_denied():
     return HttpResponseForbidden("Access denied. You are not a manager")
 
 def add_to_group(the_group, request):
-    # transform request.body to dict
-    body = json.loads(request.body)
     # try to find a user by pk
-    userToAdd = User.objects.filter(username=body.get('username'))
+    userToAdd = User.objects.filter(username=request.data.get('username'))
     if not userToAdd.count():
         return HttpResponseNotFound("User not found!")
     # get the actual user
@@ -33,7 +31,7 @@ def add_to_group(the_group, request):
     group = Group.objects.get(name=the_group)
     # add the user to the group
     userToAdd.groups.add(group)
-    return Response("Success. User added in the '" + the_group + "' group.", status=status.HTTP_200_OK)
+    return Response("Success. User added in the '" + the_group + "' group.", status=status.HTTP_201_CREATED)
 
 def remove_from_group(the_group, **kwargs):
     # try to find a user by pk
@@ -60,7 +58,7 @@ def remove_from_group(the_group, **kwargs):
 # /api/groups/manager/users/{userId}       - Manager - DELETE - Removes this particular user from the manager group and returns 200 – Success if everything is okay. If the user is not found, returns 404 – Not found
 # /api/groups/delivery-crew/users          - Manager - GET    - Returns all delivery crew
 # /api/groups/delivery-crew/users          - Manager - POST   - Assigns the user in the payload to delivery crew group and returns 201-Created HTTP
-# /api/groups/delivery-crew/users/{userId} - Manager - DELETE - Removes this user from the manager group and returns 200 – Success if everything is okay. If the user is not found, returns  404 – Not found
+# /api/groups/delivery-crew/users/{userId} - Manager - DELETE - Removes this user from the delivery group and returns 200 – Success if everything is okay. If the user is not found, returns  404 – Not found
 #-------------------------
 @permission_classes([IsAuthenticated])
 class ManagersView(generics.ListAPIView):

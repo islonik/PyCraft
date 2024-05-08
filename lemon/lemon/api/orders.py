@@ -7,6 +7,7 @@ from django.core.exceptions import PermissionDenied
 from django.db import IntegrityError
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
 
 from rest_framework import status, serializers, generics
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
@@ -47,7 +48,7 @@ class OrdersView(generics.CreateAPIView, generics.ListAPIView):
     serializer_class = OrderSerializer
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
 
-    # override for get
+    # override for get & post
     def get_queryset(self):
         user = self.request.user
         if (self.request.user.groups.filter(name='Manager')).exists():
@@ -60,14 +61,32 @@ class OrdersView(generics.CreateAPIView, generics.ListAPIView):
     def post(self, request, *args, **kwargs):
         # get user id
         user = self.request.user
-        # create a new order
-        order = Order(customer=user)
-        order.save()
         # get all cart items
         cart_items = Cart.objects.all().filter(user=user)
+
+        if not cart_items.exists():
+            return Response("Your cart is empty.", status=status.HTTP_200_OK)
+
+        # find final price
+        total_price = 0
+        for cart_item in cart_items:
+            total_price += cart_item.price
+
+        # get current time
+        date = timezone.now().strftime("%Y-%m-%d")
+        # create a new order
+        order = Order(customer=user, price=total_price, date=date)
+        order.save()
+
         # create order items from cart items
         for cart_item in cart_items:
-            order_item = OrderItem(order=order, meal=cart_item.meal, count=cart_item.count)
+            order_item = OrderItem(
+                order = order,
+                meal = cart_item.meal,
+                count = cart_item.count,
+                unit_price = cart_item.unit_price,
+                price =cart_item.price
+            )
             order_item.save()
 
         # clear cart items
@@ -89,28 +108,24 @@ class OrderView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
         if (request.user.groups.filter(name='DeliveryCrew')).exists():
             # get order
             order = Order.objects.all().filter(pk=kwargs.get('pk'))
-            # transform request.body to dict
-            body = json.loads(request.body)
             # delivery crew can only update status to delivered (1)
-            st = body.get('status')
-            if st == 0 or st == 1:
-                order.update(status=st)
+            st = request.data.get('status')
+            if st == 'true' or st == 'True' or st == 1:
+                order.update(status='True')
 
             return Response("Order has been updated.", status=status.HTTP_200_OK)
         elif (request.user.groups.filter(name='Manager')).exists():
             # get order
             order = Order.objects.all().filter(pk=kwargs.get('pk'))
-            # transform request.body to dict
-            body = json.loads(request.body)
             # update delivery
-            delivery = body.get('delivery_id')
+            delivery = request.data.get('delivery_id')
             if delivery:
                 order.update(delivery=delivery)
 
             # Manager can only update status to assigned(0) or delivered (1)
-            st = body.get('status')
-            if st == 0 or st == 1:
-                order.update(status=st)
+            st = request.data.get('status')
+            if st == 'true' or st == 'True' or st == 1:
+                order.update(status='True')
 
             return Response("Order has been updated.", status=status.HTTP_200_OK)
         else:
@@ -125,8 +140,13 @@ class OrderView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     def get(self, request, *args, **kwargs):
         # get order
         order = Order.objects.all().filter(pk=kwargs.get('pk')).first()
-        # check if order belongs the the user
-        if order.customer.pk != request.user.id:
+        # check if delivery guy is assigned
+        delivery = 0
+        if order.delivery:
+            if order.delivery.pk:
+                delivery = order.delivery.pk
+        # check if order belongs the the user and if user is not a manager or not a delivery guy who has been assigned with this order
+        if order.customer.pk != request.user.id and not delivery == request.user.id and not request.user.groups.filter(name='Manager').exists():
             return Response("Access denied.", status=status.HTTP_403_FORBIDDEN)
         serializer = self.get_serializer(order)
         return Response(serializer.data)

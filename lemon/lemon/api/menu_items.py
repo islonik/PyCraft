@@ -32,8 +32,19 @@ def access_denied():
     return HttpResponseForbidden("Access denied. You are not a manager")
 
 #-----------------------------
-# Class-based views
+# API:
+#
+# /api/menu-items - Customer, Delivery crew - GET                      - Lists all menu items. Return a 200 – Ok HTTP status code
+# /api/menu-items - Customer, Delivery crew - POST, PUT, PATCH, DELETE - Denies access and returns 403 – Unauthorized HTTP status code
+# /api/menu-items - Manager                 - GET                      - Lists all menu items
+# /api/menu-items - Manager                 - POST                     - Creates a new menu item and returns 201 - Created
+# /api/menu-items/{menuItem} - Customer, Delivery crew - GET                 - Lists single menu item
+# /api/menu-items/{menuItem} - Customer, Delivery crew - PUT, PATCH, DELETE  - Returns 403 - Unauthorized
+# /api/menu-items/{menuItem} - Manager                 - GET                 - Lists single menu item
+# /api/menu-items/{menuItem} - Manager                 - PUT, PATCH          - Updates single menu item
+# /api/menu-items/{menuItem} - Manager                 - DELETE              - Deletes menu item
 #-----------------------------
+
 @permission_classes([IsAuthenticated])
 class MealsView(generics.CreateAPIView, generics.ListAPIView):
     throttle_classes = [AnonRateThrottle, UserRateThrottle]

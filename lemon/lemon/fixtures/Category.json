@@ -1,0 +1,34 @@
+[
+    {
+      "model": "lemon.category",
+      "pk": 1,
+      "fields": {
+        "slug": "main",
+        "title": "Main"
+      }
+    },
+    {
+      "model": "lemon.category",
+      "pk": 2,
+      "fields": {
+        "slug": "dessert",
+        "title": "Dessert"
+      }
+    },
+    {
+      "model": "lemon.category",
+      "pk": 3,
+      "fields": {
+        "slug": "drink",
+        "title": "Drink"
+      }
+    },
+    {
+      "model": "lemon.category",
+      "pk": 4,
+      "fields": {
+        "slug": "appetizer",
+        "title": "Appetizer"
+      }
+    }
+]

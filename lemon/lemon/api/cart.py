@@ -27,7 +27,7 @@ class CartsView(generics.CreateAPIView, generics.ListAPIView, generics.DestroyAP
     serializer_class = CartSerializer
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
 
-    # override for get
+    # override for get & post
     def get_queryset(self):
         user = self.request.user
 

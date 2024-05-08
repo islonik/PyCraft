@@ -14,7 +14,7 @@ urlpatterns = [
     # reused API
     #-------------------------
     # could be used to generate an authentication token for a user
-    path("api/api-token-auth",              obtain_auth_token),
+    path("token/login",              obtain_auth_token),
     #-------------------------
     # API
     #-------------------------
