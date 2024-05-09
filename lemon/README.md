@@ -10,6 +10,36 @@ customer3 - cust12343 - 29577774b1ad9c48b8a67e5d73dc4be7a9b5c404
 
 ## How to ...
 
+### How to install all dependencies
+
+1. Install python
+```bash
+brew install python
+```
+
+2. Activate virtual env
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+3. Install Django
+```bash
+python3 -m pip install Django
+```
+
+4. Install DRF
+```bash
+pip install djangorestframework
+pip install markdown
+pip install django-filter
+```
+
+5. Install Djoser
+```bash
+pip install -U djoser
+```
+
 ### How to debug
 
 In Visual Studio Code go to 'Run and Debug' screen on the rigth tab.
