@@ -1,11 +1,12 @@
 # views.py in lemon app
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.utils import timezone
 from django.views import View
 from lemon.forms import BookingForm
 from .models import Booking
-from .models import Meal
+
+# import model from API
+from api.models import Meal
 
 # Create your views here.
 

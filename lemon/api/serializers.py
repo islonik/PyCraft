@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 
 from .models import Cart, Category, Cuisine, Meal, Order, OrderItem
 
+User = get_user_model()
+
 # Allows to display the name of category for Meal
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -64,8 +66,6 @@ class MealSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
-
-User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

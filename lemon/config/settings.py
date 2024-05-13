@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lemon.apps.LemonConfig', # my config
+    'api.apps.ApiConfig', # my config for Api
+    'lemon.apps.LemonConfig', # my config for Lemon
     # Django Rest Framework (DRF)
     'rest_framework',
     # need to auth token authorization support and Tokens table
