@@ -10,7 +10,7 @@ customer3 - cust12343 - 29577774b1ad9c48b8a67e5d73dc4be7a9b5c404
 
 ## How to ...
 
-### How to install all dependencies
+### How to install all dependencies on macOS
 
 1. Install python
 ```bash
@@ -31,7 +31,15 @@ python3 -m pip install Django
 4. Install DRF
 ```bash
 pip install djangorestframework
+```
+
+5. Install markdown
+```bash
 pip install markdown
+```
+
+6. Install django-filter
+```bash
 pip install django-filter
 ```
 
@@ -43,6 +51,7 @@ pip install -U djoser
 ### How to debug
 
 In Visual Studio Code go to 'Run and Debug' screen on the rigth tab.
+
 Click 'create a launch.json file' -> Python -> Django -> now you can put your break points -> go to 'Run' on the top -> Start debugging
 
 ### How to use profiling
@@ -76,12 +85,7 @@ INTERNAL_IPS = [
 
 ### How to setup your project in Visual Studio Code
 
-Install 'SQLite Viewer' on your VS code
-
-Install DRF
-```bash
-pip3 install djangorestframework
-```
+Install 'SQLite Viewer' plugin on your VS code
 
 ### How to create a new app
 
@@ -89,10 +93,10 @@ pip3 install djangorestframework
 python manage.py startapp YOUR_APP_NAME
 ```
 
-### How to start up the server
+### How to create an admin user
 
 ```bash
-python manage.py runserver
+python manage.py createsuperuser
 ```
 
 ### How to make model migrations
@@ -108,8 +112,62 @@ python manage.py showmigrations
 pythom manage.py dbshell
 ```
 
-### How to create an admin user
+### How to start up Django project
 
 ```bash
-python manage.py createsuperuser
+python manage.py runserver
+```
+
+### How to install and start up MySQL on macOS
+Install mysql using next command in terminal (*install brew before)
+
+```bash
+brew install mysql
+```
+
+We've installed your MySQL database without a root password. To secure it run:
+```bash
+mysql_secure_installation
+```
+
+MySQL is configured to only allow connections from localhost by default
+
+To connect run:
+```bash
+mysql -u root
+```
+
+To start mysql now and restart at login:
+```bash
+brew services start mysql
+```
+Or, if you don't want/need a background service you can just run:
+```bash
+/opt/homebrew/opt/mysql/bin/mysqld_safe --datadir\=/opt/homebrew/var/mysql
+```
+
+### How to install mysql libraries
+
+```bash
+brew install pkg-config
+```
+
+Upgrade pip
+```bash
+pip3 install --upgrade pip
+```
+
+Upgrade setup tools
+```bash
+python3 -m pip install --upgrade setuptools
+```
+
+Install python connector
+```bash
+pip3 install mysql-connector-python
+```
+
+Install mysqlclient
+```bash
+pip3 install mysqlclient
 ```
