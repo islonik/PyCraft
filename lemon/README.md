@@ -146,7 +146,7 @@ Or, if you don't want/need a background service you can just run:
 /opt/homebrew/opt/mysql/bin/mysqld_safe --datadir\=/opt/homebrew/var/mysql
 ```
 
-### How to install mysql libraries
+### How to install MySQL libraries
 
 ```bash
 brew install pkg-config
@@ -170,4 +170,19 @@ pip3 install mysql-connector-python
 Install mysqlclient
 ```bash
 pip3 install mysqlclient
+```
+
+### How to create a FID user in MySQL
+
+Connect to MySQL database and execute
+```bash
+CREATE USER 'mysql_fid'@'localhost' IDENTIFIED BY 'mysql_fid' ;
+```
+
+```bash
+GRANT ALL ON *.* TO 'mysql_fid'@'localhost';
+```
+
+```bash
+FLUSH PRIVILEGES;
 ```
