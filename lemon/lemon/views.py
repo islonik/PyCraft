@@ -30,10 +30,6 @@ class BookingView(View):
 
     @classmethod
     def render_new_booking(self, request, booking):
-        # set initial values
-        now = timezone.now().strftime("%Y-%m-%d")
-        booking.initial["reservation_time"] = now
-        # pass BookingForm object into template
         context = {"form": booking}
         return render(request, "booking.html", context)
 
