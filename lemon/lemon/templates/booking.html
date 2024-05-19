@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block content %}
+
+{% csrf_token %}
 <section>
     <article>
         <h1>Make a reservation</h1>
@@ -10,11 +12,13 @@
         <div class="row">
             <!--Begin col-->
             <div class="column">
-            <form action="" method="post">
-                {% csrf_token %}
-                {{form.as_p}}
-                <input type="submit" id="button">
-            </form>
+                <!-- <label for="start">Choose date:</label>
+                <input id="reservation-date" type="date" name="reservation-date" value="{{start_date}}" min="{{start_date}}" max="{{end_date}}" /> -->
+
+                <form id="form" method="post">
+                    {{form.as_p}}
+                    <input type="submit" >
+                </form>
             </div>
             <!--End col-->
 
@@ -32,4 +36,23 @@
         <!--End row-->
     </article>
 </section>
+
+<!-- should be located after the above section -->
+<script>
+    const form = document.getElementById('form');
+    form.addEventListener("submit", submitHandler);
+
+    function submitHandler(e) {
+        e.preventDefault();
+        // show success to a user and reset the form
+        fetch(form.action, {method: 'POST', body: new FormData(form)})
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'Success') {
+                    alert('Success!');
+                    form.reset()
+                }
+            });
+    }
+</script>
 {% endblock %}

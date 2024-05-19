@@ -1,7 +1,10 @@
 # views.py in lemon app
 from django.shortcuts import render
-from django.utils import timezone
+from django.http import JsonResponse
 from django.views import View
+from django.utils import timezone
+from datetime import timedelta
+
 from lemon.forms import BookingForm
 from .models import Booking
 
@@ -24,18 +27,27 @@ class BookingView(View):
         booking = BookingForm(request.POST)
         if booking.is_valid:
             booking.save()
-            # create new form
-            booking = BookingForm()
+            return JsonResponse({
+                'message': 'Success'
+            })
         return self.render_new_booking(request, booking)
 
     @classmethod
     def render_new_booking(self, request, booking):
-        context = {"form": booking}
+        start_date = timezone.now()
+        end_date = start_date + timedelta(days=7)
+        print(end_date.strftime("%Y-%m-%d"))
+        context = {
+            "form": booking,
+            "start_date": start_date.strftime("%Y-%m-%d"),
+            "end_date": end_date.strftime("%Y-%m-%d")
+        }
         return render(request, "booking.html", context)
 
 def bookings(request):
-    booking_items = Booking.objects.all()
-    items_dict = {"booking": booking_items}
+    reservation_time = timezone.now().strftime("%Y-%m-%d")
+    booking_items = Booking.objects.all().filter(reservation_time=reservation_time)
+    items_dict = {"bookings": booking_items}
     return render(request, "bookings.html", items_dict)
 
 def index(request):
