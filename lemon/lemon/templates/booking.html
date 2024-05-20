@@ -4,7 +4,7 @@
 
 {% block content %}
 
-{% csrf_token %}
+
 <section>
     <article>
         <h1>Make a reservation</h1>
@@ -12,12 +12,35 @@
         <div class="row">
             <!--Begin col-->
             <div class="column">
-                <!-- <label for="start">Choose date:</label>
-                <input id="reservation-date" type="date" name="reservation-date" value="{{start_date}}" min="{{start_date}}" max="{{end_date}}" /> -->
-
                 <form id="form" method="post">
-                    {{form.as_p}}
-                    <input type="submit" >
+                    {% csrf_token %}
+                    <!-- {{form.as_p}} -->
+                    <p>
+                        <label for="id_first_name">First name:</label>
+                        <input type="text" name="first_name" maxlength="200" required id="id_first_name">
+                    </p>
+                    <p>
+                        <label for="id_last_name">Last name:</label>
+                        <input type="text" name="last_name" maxlength="200" required id="id_last_name">
+                    </p>
+                    <p>
+                        <label for="id_guest_count">Guest count:</label>
+                        <div class="row">
+                            <input type="number" name="guest_count" value="{{default_guests}}" min="{{min_guests}}" max="{{max_guests}}" required id="id_guest_count" onclick="disableSubmitButtonIfGuestCountIsZero()">
+                        </div>
+                    </p>
+                    <p>
+                        <label for="id_reservation_time">Reservation date:</label>
+                        <input type="date" name="reservation_time" value="{{reservation_time}}" min="{{start_date}}" max="{{end_date}}" required id="id_reservation_time" onchange="reloadPageForDifferentDate()"/>
+                    </p>
+                    <p>
+                        <label for="id_comments">Comments:</label>
+                        <input type="text" name="comments" maxlength="100" required id="id_comments">
+                    </p>
+                    <input id="id_submit_form" type="submit">
+                    <p id="id_text_warning" class="warning">
+                        No reservations available! <br/>Please try another date!
+                    </p>
                 </form>
             </div>
             <!--End col-->
@@ -39,6 +62,9 @@
 
 <!-- should be located after the above section -->
 <script>
+    // executes when page is loaded
+    disableSubmitButtonIfGuestCountIsZero();
+
     const form = document.getElementById('form');
     form.addEventListener("submit", submitHandler);
 
@@ -48,11 +74,45 @@
         fetch(form.action, {method: 'POST', body: new FormData(form)})
             .then(response => response.json())
             .then(data => {
-                if (data.message === 'Success') {
-                    alert('Success!');
-                    form.reset()
+                if (data.message.startsWith('Success')) {
+                    alert(data.message);
+                    // reset the page to reload available spaces
+                    location.reload(true);
                 }
             });
+    }
+
+    function disableSubmitButtonIfGuestCountIsZero() {
+        var guests = document.getElementById('id_guest_count').value;
+        if (guests == 0){
+            document.getElementById("id_submit_form").disabled = true;
+            document.getElementById("id_text_warning").hidden = false;
+        } else {
+            document.getElementById("id_submit_form").disabled = false;
+            document.getElementById("id_text_warning").hidden = true;
+        }
+    }
+
+    function reloadPageForDifferentDate() {
+        var reservationTime = document.getElementById('id_reservation_time').value;
+        console.log(reservationTime);
+
+        let url = window.location.href;
+        if (url.indexOf('?') == -1) {
+            // if url parameters are empty
+            url += '?date=' + reservationTime;
+        } else {
+            // if url parameter 'date' is empty
+            if (url.indexOf('date') == -1) {
+                url += '&date=' + reservationTime;
+            } else {
+                // replace existing url parameter 'date'
+                var href = new URL(url);
+                href.searchParams.set('date', reservationTime);
+                url = href;
+            }
+        }
+        window.location.href = url;
     }
 </script>
 {% endblock %}

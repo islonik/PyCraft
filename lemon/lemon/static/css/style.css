@@ -300,3 +300,7 @@ tr, th, td {
     text-align: left;
     text-indent: 0.5rem;
 }
+
+.warning {
+    color: red;
+}
