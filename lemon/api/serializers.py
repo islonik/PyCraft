@@ -2,9 +2,15 @@ from rest_framework import serializers
 
 from django.contrib.auth import get_user_model
 
-from .models import Cart, Category, Cuisine, Meal, Order, OrderItem
+from .models import Booking, Cart, Category, Cuisine, Meal, Order, OrderItem
 
 User = get_user_model()
+
+# Allows to display the name of category for Booking
+class BookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
+        fields = ['first_name', 'last_name', 'guest_count', 'reservation_date', 'reservation_time', 'comments']
 
 # Allows to display the name of category for Meal
 class CategorySerializer(serializers.ModelSerializer):

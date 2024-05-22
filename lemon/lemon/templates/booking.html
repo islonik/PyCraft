@@ -4,7 +4,6 @@
 
 {% block content %}
 
-
 <section>
     <article>
         <h1>Make a reservation</h1>
@@ -23,6 +22,20 @@
                         <label for="id_last_name">Last name:</label>
                         <input type="text" name="last_name" maxlength="200" required id="id_last_name">
                     </p>
+
+                    <p>
+                        <label for="id_reservation_date">Reservation date:</label>
+                        <input type="date" name="reservation_date" value="{{reservation_date}}" min="{{start_date}}" max="{{end_date}}" required id="id_reservation_date" onchange="reloadPageForDifferentDate()"/>
+                    </p>
+                    <p>
+                        <label for="id_reservation_time">Reservation time:</label>
+                        <select name="reservation_time" required aria-invalid="true" id="id_reservation_time">
+                            <option value="" selected>---------</option>
+                            {% for time_slot, status in time_slots.items %}
+                            <option value="{{time_slot}}" {{status}}>{{time_slot}}</option>
+                            {% endfor %}
+                        </select>
+                    </p>
                     <p>
                         <label for="id_guest_count">Guest count:</label>
                         <div class="row">
@@ -30,16 +43,12 @@
                         </div>
                     </p>
                     <p>
-                        <label for="id_reservation_time">Reservation date:</label>
-                        <input type="date" name="reservation_time" value="{{reservation_time}}" min="{{start_date}}" max="{{end_date}}" required id="id_reservation_time" onchange="reloadPageForDifferentDate()"/>
-                    </p>
-                    <p>
                         <label for="id_comments">Comments:</label>
                         <input type="text" name="comments" maxlength="100" required id="id_comments">
                     </p>
                     <input id="id_submit_form" type="submit">
                     <p id="id_text_warning" class="warning">
-                        No reservations available! <br/>Please try another date!
+                        No reservations available on today! <br/>Please try another date!
                     </p>
                 </form>
             </div>
@@ -64,6 +73,7 @@
 <script>
     // executes when page is loaded
     disableSubmitButtonIfGuestCountIsZero();
+    checkBookingSlots();
 
     const form = document.getElementById('form');
     form.addEventListener("submit", submitHandler);
@@ -78,12 +88,15 @@
                     alert(data.message);
                     // reset the page to reload available spaces
                     location.reload(true);
+                } else {
+                    // show fail messages
+                    alert(data.message);
                 }
             });
     }
 
     function disableSubmitButtonIfGuestCountIsZero() {
-        var guests = document.getElementById('id_guest_count').value;
+        let guests = document.getElementById('id_guest_count').value;
         if (guests == 0){
             document.getElementById("id_submit_form").disabled = true;
             document.getElementById("id_text_warning").hidden = false;
@@ -94,25 +107,39 @@
     }
 
     function reloadPageForDifferentDate() {
-        var reservationTime = document.getElementById('id_reservation_time').value;
-        console.log(reservationTime);
+        var reservationDate = document.getElementById('id_reservation_date').value;
+        console.log(reservationDate);
 
         let url = window.location.href;
         if (url.indexOf('?') == -1) {
             // if url parameters are empty
-            url += '?date=' + reservationTime;
+            url += '?date=' + reservationDate;
         } else {
             // if url parameter 'date' is empty
             if (url.indexOf('date') == -1) {
-                url += '&date=' + reservationTime;
+                url += '&date=' + reservationDate;
             } else {
                 // replace existing url parameter 'date'
                 var href = new URL(url);
-                href.searchParams.set('date', reservationTime);
+                href.searchParams.set('date', reservationDate);
                 url = href;
             }
         }
         window.location.href = url;
+    }
+
+    function checkBookingSlots() {
+        let time_slots = document.getElementById('id_reservation_time'), time_slot, i;
+        let isEnabled = false;
+        for (i = 0; i < time_slots.length; i++) {
+            time_slot = time_slots[i];
+            if (time_slot.enabled) {
+                isEnabled = true;
+            }
+        }
+        if (!isEnabled) {
+            document.getElementById("id_text_warning").hidden = false;
+        }
     }
 </script>
 {% endblock %}

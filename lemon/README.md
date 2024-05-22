@@ -111,7 +111,7 @@ python manage.py createsuperuser
 # creates file 0001_initial.py which creates a model file for API app
 python manage.py makemigrations api
 # creates file 0001_initial.py which creates a model file for Lemon app
-pythom manage.py makemigrations lemon
+python manage.py makemigrations lemon
 # apply migrations
 python manage.py migrate
 # show all migrations

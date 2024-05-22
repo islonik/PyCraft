@@ -2,11 +2,12 @@ from django import forms
 
 from django.utils import timezone
 
-from .models import Booking
+# import model from API
+from api.models import Booking
 
 class BookingForm(forms.ModelForm):
     # set initial values
-    reservation_time = forms.DateField(initial = timezone.now().strftime("%Y-%m-%d"))
+    reservation_date = forms.DateField(initial = timezone.now().strftime("%Y-%m-%d"))
 
     class Meta:
         model = Booking

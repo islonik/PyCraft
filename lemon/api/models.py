@@ -1,7 +1,32 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # API models
+
+TIME_SLOTS = {
+    "1 PM": "1 PM",
+    "2 PM": "2 PM",
+    "3 PM": "3 PM",
+    "4 PM": "4 PM",
+    "5 PM": "5 PM",
+    "6 PM": "6 PM",
+    "7 PM": "7 PM",
+    "8 PM": "8 PM",
+    "9 PM": "9 PM",
+}
+
+class Booking(models.Model):
+    first_name = models.CharField(max_length = 50)
+    last_name = models.CharField(max_length = 50)
+    guest_count = models.PositiveIntegerField(default=2, validators=[MinValueValidator(1), MaxValueValidator(10)])
+    reservation_date = models.DateField()
+    reservation_time = models.CharField(max_length=10, choices=TIME_SLOTS)
+    comments = models.CharField(max_length = 100)
+
+    # also show it in admin panel
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.reservation_date} - {self.reservation_time}"
 
 class Category(models.Model):
     slug = models.SlugField()
