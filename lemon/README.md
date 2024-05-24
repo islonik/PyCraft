@@ -120,6 +120,12 @@ python manage.py showmigrations
 pythom manage.py dbshell
 ```
 
+### How to test Django project
+
+```bash
+python manage.py test
+```
+
 ### How to start up Django project
 
 ```bash
