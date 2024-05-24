@@ -18,7 +18,7 @@ urlpatterns = [
     #-------------------------
     # API
     #-------------------------
-    path("api/bookings",                             BookingsView.as_view()),
+    path("api/bookings",                             BookingsView.as_view(),       name="bookings"),
     path("api/cart/menu-items",                      CartsView.as_view()),
 
     path("api/menu-items",                           MealsView.as_view()),

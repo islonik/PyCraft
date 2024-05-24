@@ -23,7 +23,8 @@ class BookingsView(generics.CreateAPIView, generics.ListAPIView, generics.Destro
     # limit HTTP methods
     http_method_names = ['get', 'post', 'delete']
 
-    queryset = Booking.objects.all()
+    # fix UnorderedObjectListWarning
+    queryset = Booking.objects.get_queryset().order_by('reservation_date', 'reservation_time', 'id')
     serializer_class = BookingSerializer
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
     ordering_fields = ['reservation_date', 'reservation_time']
