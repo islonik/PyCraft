@@ -1,19 +1,5 @@
 # Little Lemon Backend in Python
 
-Default users:
-
-admin - admin - 6f477c2c557637d58e7b94d44372500895f0f466
-
-manager - man12345 - a85abe70805618fb73e65f53eddb56639b25da13
-
-delivery - del12345 - 9ea2c033ab5318498bbd77cb8716e35980aac359
-
-customer1 - cust12341 - a399e4820d4a696b8914353eac8d17ca788af4bd
-
-customer2 - cust12342 - 38a8b93e2e8e05b2514461ebe8626fe58bec5c36
-
-customer3 - cust12343 - 29577774b1ad9c48b8a67e5d73dc4be7a9b5c404
-
 ## How to ...
 
 ### How to install all dependencies on macOS
