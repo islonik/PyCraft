@@ -62,3 +62,43 @@ class BookingTestCase(TestCase):
         self.assertEqual('Miya', bookings['results'][0]['first_name'])
         self.assertEqual('Mato', bookings['results'][1]['first_name'])
         self.assertEqual('David', bookings['results'][2]['first_name'])
+
+    def test_bookings_post_get_delete(self):
+        self.client.login(username='admin@admin.com', password='admin')
+
+        data = {
+            "first_name" : "Shin",
+            "last_name" : "Kouduki",
+            "guest_count" : 2,
+            "reservation_date" : "2024-05-26",
+            "reservation_time" : "3 PM",
+            "comments" : "Meeting with my agent."
+        }
+        response = self.client.post(
+            path = "/api/bookings",
+            data = data,
+            format = "json",
+            headers = {'Content-Type': 'application/json'}
+        )
+        self.assertEqual(response.status_code, 201)
+
+        # check that the booking was added to all bookings
+        response = self.client.get(path="/api/bookings", format="json")
+        self.assertEqual(response.status_code, 200)
+
+        bookings = response.data
+        self.assertEqual(4, bookings['count'])
+
+        id = bookings['results'][3]['id']
+        print("\n", "id before transforming:", id)
+        id = id[id.rindex('/') + 1 : ]
+        print("\n", "id after transforming :", id)
+
+        response = self.client.delete(path="/api/bookings/{}".format(id))
+        self.assertEqual(response.status_code, 204) # deleted
+
+        response = self.client.delete(path="/api/bookings/{}".format(id))
+        self.assertEqual(response.status_code, 404) # not found
+
+
+

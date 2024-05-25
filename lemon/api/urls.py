@@ -3,7 +3,7 @@ from django.urls import path, include
 
 from rest_framework.authtoken.views import obtain_auth_token
 
-from .views.bookings import BookingsView
+from .views.bookings import BookingsView, BookingView
 from .views.cart import CartsView
 from .views.menu_items import MealView, MealsView
 from .views.orders import OrdersView, OrderView
@@ -19,6 +19,8 @@ urlpatterns = [
     # API
     #-------------------------
     path("api/bookings",                             BookingsView.as_view(),       name="bookings"),
+    path("api/bookings/<int:pk>",                    BookingView.as_view(),        name="booking"),
+
     path("api/cart/menu-items",                      CartsView.as_view()),
 
     path("api/menu-items",                           MealsView.as_view()),

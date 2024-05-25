@@ -8,9 +8,12 @@ User = get_user_model()
 
 # Allows to display the name of category for Booking
 class BookingSerializer(serializers.ModelSerializer):
+    # Could add a hyperlink instead of int id
+    id = serializers.HyperlinkedRelatedField(many=False, view_name='booking', read_only=True)
+
     class Meta:
         model = Booking
-        fields = ['first_name', 'last_name', 'guest_count', 'reservation_date', 'reservation_time', 'comments']
+        fields = ['id', 'first_name', 'last_name', 'guest_count', 'reservation_date', 'reservation_time', 'comments']
 
 # Allows to display the name of category for Meal
 class CategorySerializer(serializers.ModelSerializer):
