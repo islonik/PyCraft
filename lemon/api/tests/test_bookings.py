@@ -99,6 +99,3 @@ class BookingTestCase(TestCase):
 
         response = self.client.delete(path="/api/bookings/{}".format(id))
         self.assertEqual(response.status_code, 404) # not found
-
-
-

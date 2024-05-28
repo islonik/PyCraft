@@ -23,7 +23,8 @@ class CartsView(generics.CreateAPIView, generics.ListAPIView, generics.DestroyAP
     # limit HTTP methods
     http_method_names = ['get', 'post', 'delete']
 
-    queryset = Cart.objects.all()
+    # fix UnorderedObjectListWarning
+    queryset = Cart.objects.get_queryset()
     serializer_class = CartSerializer
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
 
@@ -31,7 +32,8 @@ class CartsView(generics.CreateAPIView, generics.ListAPIView, generics.DestroyAP
     def get_queryset(self):
         user = self.request.user
 
-        return Cart.objects.all().filter(user=user)
+        # 'order_by' - fixes UnorderedObjectListWarning
+        return Cart.objects.all().filter(user=user).order_by('id')
 
     def delete(self, request, *args, **kwargs):
 

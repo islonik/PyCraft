@@ -19,13 +19,13 @@ class BookingSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['title']
+        fields = ['id', 'title']
 
 # Allows to display the name of cuisine for Meal
 class CuisineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cuisine
-        fields = ['name']
+        fields = ['id', 'name']
 
 class MealSerializer(serializers.ModelSerializer):
     # Could add a hyperlink instead of int id
