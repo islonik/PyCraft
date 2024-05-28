@@ -49,14 +49,23 @@ class CartTestCase(TestCase):
             image = '/static/path_to_image/pizza.jpg',
             image_text = 'Pizza'
         )
+
         # create Cart
-        cart = Cart.objects.create(
-            user = self.user,
-            meal = pizza,
-            count = 2,
-            unit_price = 10.00,
-            price = 20.00
+        data = {
+            "user_id" : self.user.id,
+            "meal_id" : pizza.id,
+            "count" : 2,
+            "unit_price" : 10.00,
+            "price" : 20.00,
+        }
+        print(pizza.id)
+        response = self.client.post(
+            path = "/api/cart/menu-items",
+            data = data,
+            format = "json",
+            headers = {'Content-Type': 'application/json'}
         )
+        self.assertEqual(response.status_code, 201)
 
         # Cart is NOT empty
         response = self.client.get(path="/api/cart/menu-items", format="json")
