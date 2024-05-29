@@ -3,7 +3,7 @@ from django.test import TestCase
 
 from rest_framework.test import APIClient
 
-from api.models import Cart, Category, Cuisine, Meal
+from api.models import Category, Cuisine, Meal
 
 # Create your tests here.
 
@@ -17,11 +17,11 @@ class CartTestCase(TestCase):
             password='admin'
         )
 
-    def test_get_cart_no_auth(self):
+    def test_cart_no_auth(self):
         response = self.client.get(path="/api/cart/menu-items", format="json")
         self.assertEqual(response.status_code, 401)
 
-    def test_post_get_delete_with_auth(self):
+    def test_cart_post_get_delete_with_auth(self):
         self.client.login(username='admin@admin.com', password='admin')
 
         response = self.client.get(path="/api/cart/menu-items", format="json")
@@ -58,7 +58,6 @@ class CartTestCase(TestCase):
             "unit_price" : 10.00,
             "price" : 20.00,
         }
-        print(pizza.id)
         response = self.client.post(
             path = "/api/cart/menu-items",
             data = data,

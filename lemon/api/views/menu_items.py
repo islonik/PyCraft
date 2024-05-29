@@ -1,19 +1,14 @@
 # api/menu_items.py in lemon app
-from django.core.exceptions import PermissionDenied
-from django.db import IntegrityError
-from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseForbidden
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseForbidden
 
-from rest_framework import status, serializers, generics
-from rest_framework.authentication import BasicAuthentication, TokenAuthentication, SessionAuthentication
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework import generics
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
-from rest_framework.views import APIView
 
 
-from ..models import Cuisine, Meal
+from ..models import Meal
 from ..serializers import MealSerializer
 
 # Create your API here.
@@ -50,7 +45,8 @@ class MealsView(generics.CreateAPIView, generics.ListAPIView):
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['get', 'put', 'post', 'patch', 'delete']
-    queryset = Meal.objects.all()
+    # fix UnorderedObjectListWarning
+    queryset = Meal.objects.get_queryset().order_by('id', 'price')
     serializer_class = MealSerializer
     # specifies used authentication classes
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
@@ -79,10 +75,15 @@ class MealView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['get', 'put', 'patch', 'delete']
-    queryset = Meal.objects.all()
+    # fix UnorderedObjectListWarning
+    queryset = Meal.objects.get_queryset().order_by('id', 'price')
     serializer_class = MealSerializer
     # specifies used authentication classes
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
+    # searching
+    search_fields = ['name', 'desc']
+    # ordering
+    ordering_fields = ['id', 'price']
 
     def put(self, request, *args, **kwargs):
         if (request.user.groups.filter(name='Manager')).exists():
