@@ -7,7 +7,7 @@ from api.models import Category, Cuisine
 
 # Create your tests here.
 
-class CartTestCase(TestCase):
+class MenuItemsTestCase(TestCase):
 
     def create_pizza_json(self):
         # create Category

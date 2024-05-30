@@ -7,6 +7,64 @@ from api.models import Category, Cuisine, Meal
 
 # Create your tests here.
 
+def create_pizza():
+    # create Category
+    category = Category.objects.create(
+        title = "Main"
+    )
+    # create Cuisine
+    cuisine = Cuisine.objects.create(
+        name = "Italian"
+    )
+    # create Meal
+    pizza = Meal.objects.create(
+        name = "Pizza",
+        cuisine = cuisine,
+        category = category,
+        price = 10.00,
+        desc = 'Original pizza',
+        image = '/static/path_to_image/pizza.jpg',
+        image_text = 'Pizza'
+    )
+    return pizza
+
+def create_margarita():
+    # create Category
+    category = Category.objects.create(
+        title = "Drink"
+    )
+    # create Cuisine
+    cuisine = Cuisine.objects.create(
+        name = "Italian"
+    )
+    # create Meal
+    margarita = Meal.objects.create(
+        name = "Margarita",
+        cuisine = cuisine,
+        category = category,
+        price = 7.50,
+        desc = 'Original Margarita',
+        image = '/static/path_to_image/margarita.jpg',
+        image_text = 'Margarita'
+    )
+    return margarita
+
+def add_meal_item_in_cart(user, client, item_count, item):
+    data = {
+        "user_id" : user.id,
+        "meal_id" : item.id,
+        "count" : item_count,
+        "unit_price" : item.price,
+        "price" : item_count * item.price,
+    }
+    response = client.post(
+        path = "/api/cart/menu-items",
+        data = data,
+        format = "json",
+        headers = {'Content-Type': 'application/json'}
+    )
+    return response
+
 class CartTestCase(TestCase):
 
     def setUp(self):
@@ -31,39 +89,14 @@ class CartTestCase(TestCase):
         cart = response.data
         self.assertEqual(0, cart['count'])
 
-        # create Category
-        category = Category.objects.create(
-            title = "Main"
-        )
-        # create Cuisine
-        cuisine = Cuisine.objects.create(
-            name = "Italian"
-        )
-        # create Meal
-        pizza = Meal.objects.create(
-            name = "Pizza",
-            cuisine = cuisine,
-            category = category,
-            price = 10.00,
-            desc = 'Original pizza',
-            image = '/static/path_to_image/pizza.jpg',
-            image_text = 'Pizza'
-        )
+        # add pizza in Cart
+        pizza = create_pizza()
+        response = add_meal_item_in_cart(self.user, self.client, 2, pizza)
+        self.assertEqual(response.status_code, 201)
 
-        # create Cart
-        data = {
-            "user_id" : self.user.id,
-            "meal_id" : pizza.id,
-            "count" : 2,
-            "unit_price" : 10.00,
-            "price" : 20.00,
-        }
-        response = self.client.post(
-            path = "/api/cart/menu-items",
-            data = data,
-            format = "json",
-            headers = {'Content-Type': 'application/json'}
-        )
+        # add margarita in Cart
+        margarita = create_margarita()
+        response = add_meal_item_in_cart(self.user, self.client, 2, margarita)
         self.assertEqual(response.status_code, 201)
 
         # Cart is NOT empty
