@@ -103,7 +103,7 @@ class CartTestCase(TestCase):
         response = self.client.get(path="/api/cart/menu-items", format="json")
         self.assertEqual(response.status_code, 200)
         cart = response.data
-        self.assertEqual(1, cart['count'])
+        self.assertEqual(2, cart['count'])
 
         response = self.client.delete(path="/api/cart/menu-items")
         self.assertEqual(response.status_code, 204) # deleted

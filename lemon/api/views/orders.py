@@ -44,7 +44,7 @@ class OrdersView(generics.CreateAPIView, generics.ListAPIView):
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['get', 'post']
-    queryset = Order.objects.values()
+    queryset = Order.objects.get_queryset()
     serializer_class = OrderSerializer
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
 
@@ -52,11 +52,11 @@ class OrdersView(generics.CreateAPIView, generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         if (self.request.user.groups.filter(name='Manager')).exists():
-            return Order.objects.all()
+            return Order.objects.all().order_by('id')
         elif (self.request.user.groups.filter(name='DeliveryCrew').exists()):
-            return Order.objects.all().filter(delivery=user)
+            return Order.objects.all().filter(delivery=user).order_by('id')
         else:
-            return Order.objects.all().filter(customer=user)
+            return Order.objects.all().filter(customer=user).order_by('id')
 
     def post(self, request, *args, **kwargs):
         # get user id
