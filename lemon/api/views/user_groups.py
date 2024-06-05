@@ -61,12 +61,11 @@ def remove_from_group(the_group, **kwargs):
 # /api/groups/delivery-crew/users/{userId} - Manager - DELETE - Removes this user from the delivery group and returns 200 – Success if everything is okay. If the user is not found, returns  404 – Not found
 #-------------------------
 @permission_classes([IsAuthenticated])
-class ManagersView(generics.ListAPIView):
+class ManagersView(generics.CreateAPIView, generics.ListAPIView):
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['get', 'post']
-    queryset = User.objects.values()
-    queryset = queryset.filter(groups__name__in=['Manager'])
+    queryset = User.objects.all().filter(groups__name__in=['Manager']).order_by('id')
     serializer_class = UserSerializer
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
 
@@ -88,8 +87,7 @@ class ManagerView(generics.DestroyAPIView):
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['delete']
-    queryset = User.objects.values()
-    queryset = queryset.filter(groups__name__in=['Manager'])
+    queryset = User.objects.all().filter(groups__name__in=['Manager']).order_by('id')
     serializer_class = UserSerializer
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
 
@@ -105,8 +103,7 @@ class DeliveryCrewView(generics.ListAPIView):
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['get', 'post']
-    queryset = User.objects.values()
-    queryset = queryset.filter(groups__name__in=['DeliveryCrew'])
+    queryset = User.objects.all().filter(groups__name__in=['DeliveryCrew']).order_by('id')
     serializer_class = UserSerializer
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
 
@@ -128,8 +125,7 @@ class DeliveryPersonView(generics.DestroyAPIView):
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # limit HTTP methods
     http_method_names = ['delete']
-    queryset = User.objects.values()
-    queryset = queryset.filter(groups__name__in=['DeliveryCrew'])
+    queryset = User.objects.all().filter(groups__name__in=['DeliveryCrew']).order_by('id')
     serializer_class = UserSerializer
     authentication_classes = [TokenAuthentication, SessionAuthentication,]
 
