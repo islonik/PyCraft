@@ -90,9 +90,9 @@ class BookingTestCase(TestCase):
         self.assertEqual(4, bookings['count'])
 
         id = bookings['results'][3]['id']
-        print("\n", "id before transforming:", id)
+        #print("\n", "id before transforming:", id)
         id = id[id.rindex('/') + 1 : ]
-        print("\n", "id after transforming :", id)
+        #print("\n", "id after transforming :", id)
 
         response = self.client.delete(path="/api/bookings/{}".format(id))
         self.assertEqual(response.status_code, 204) # deleted

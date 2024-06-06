@@ -3,11 +3,9 @@ from django.test import TestCase
 
 from rest_framework.test import APIClient
 
-from api.tests.test_cart import create_pizza, create_margarita, add_meal_item_in_cart
-
 # Create your tests here.
 
-class OrdersTestCase(TestCase):
+class UserGroupsTestCase(TestCase):
 
     def setUp(self):
         self.client = APIClient()
