@@ -1,0 +1,16 @@
+fastapi
+starlette
+Jinja2
+pydantic
+uvicorn
+websockets
+pandas
+elasticsearch
+requests
+coverage
+openpyxl
+httpx
+pyOpenSSL
+cryptography
+schedule
+pytest
