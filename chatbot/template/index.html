@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chatbot</title>
+    <link rel="icon" href="/{{src}}/img/chat.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+
+    <!-- Import Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="/{{src}}/css/all.css"/>
+
+    <!-- Import materialize.css -->
+    <link rel="stylesheet" type="text/css" href="/{{src}}/css/materialie.min.css"/>
+</head>
+
+<body>
+    <script type="text/javascript" src="/{{src}}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/{{src}}/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="/{{src}}/js/lib/materialize.min.js"></script>
+    <script type="text/javascript" src="/{{src}}/js/lib/showdown.min.js"></script>
+
+    <script type="text/javascript">
+        let ws;
+        document.addEventListener("DOMContentLoader", function() {
+            var client_id = "{soeid}"
+            var ws_url = "{{ws_host}}".replaceAll("&#34;", "");
+            var url = `${ws_url}/communicate?client_id=${client_id}`
+            if (!ws || ws.readyState === WebSocket.CLOSED) {
+                ws = new WebSocket(url);
+                ws.onopen = function() {
+                    console.log("Web socket connect established.");
+                }
+                ws.onclose = function() {
+                    console.log("Web socket connect closed.");
+                }
+                ws.onerror = function() {
+                    console.log("Web socket connection error.", error)
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
