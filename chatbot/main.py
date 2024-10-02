@@ -27,6 +27,7 @@ def process_message(self, data, client_id):
 
 @server.get("/chatbot")
 async def home(request: Request):
+    print("Starting chatbot...")
     return templates.TemplateResponse(
         request = request, name = "index.html", context = {
             "src" : "chatbot/static",

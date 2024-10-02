@@ -14,6 +14,8 @@
 
     <!-- Import materialize.css -->
     <link rel="stylesheet" type="text/css" href="/{{src}}/css/materialize.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/{{src}}/css/style.css"/>
 </head>
 
 <body>
@@ -43,6 +45,52 @@
         })
     </script>
 
+    <div class="container">
+        <div class="widget">
+            <div class="chatbox-header">
+                <span class="chatbox-header-title">My Virtual Assistant</span>
+                <div class="chatbox-controls">
+                    <button class="reload-btn disabled" title="Reconnect" id="restart"><i></i></button>
+                    <button class="minimize-btn" title="Minimize" id="minimize"><i></i></button>
+                    <button class="expand-btn" title="Expand"><i></i></button>
+                    <button class="close-btn" title="Close"><i></i></button>
+                </div>
+            </div>
+            <div class="chatbot-header-logo">
+                <a href="#">
+                    <img src="/{{src}}/img/chatbot-logo.jpg" title="Kafka" alt="Kafka">
+                </a>
+                <span class="salutation" id="salutation"></span>
+            </div>
+
+            <!-- chatbot content goes here -->
+            <div class="chats" id="chats">
+                <div class="clearfix"></div>
+            </div>
+
+            <!-- keypad for users to enter messages -->
+            <div class="keypad">
+                <textarea class="userInput" id="userInput" placeholder="Type a message..." ></textarea>
+            </div>
+
+            <div class="quick-links">
+                <a href="javascript:;"
+                    class="model-feedback-open feedback-img" title="User Feedback" ></a>
+                <a href="mailto:nikita.lipatov@gmail.com"
+                    class="email-img" target="_blank" title="My Virtual Assistant Support" ></a>
+
+                <button class="scroll-to-top" id="scroll-to-top" title="Scroll to top">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="chat-button" id="chat-button">
+            <div class="message">
+                <span class="tooltiptext">My Virtual Assistant</span>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

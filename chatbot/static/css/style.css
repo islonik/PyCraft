@@ -1,0 +1,233 @@
+
+
+.chats {
+    height: 385px;
+    padding: 95px 20px 20px 20px;
+    border-radius: 1px;
+    overflow-y: scroll;
+    margin-top: 1px;
+    transition: 0.2s;
+}
+
+div.chats::-webkit-scrollbar {
+    overflow-y: hidden;
+    width: 0px;
+}
+
+div.chats>pre {
+    font-size: 1em;
+    margin: 0 !important;
+    white-space: initial !important;
+}
+
+div.chats>ul:not(.browser-default) {
+    padding-left: 1em;
+}
+
+div.chats>ul:not(.browser-default)>li {
+    list-style-type: initial;
+}
+
+div.chats>span:botMsg>ol {
+    list-style-type: initial;
+}
+
+.clearfix {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.chatbox-header {
+    height: 50px;
+    border-radius: 10px 10px 0px 0px;
+    padding: 5px;
+    font-size: 16px;
+    cursor: move;
+}
+
+.chatbox-header-title {
+    color: white;
+    margin-top: 2%;
+    display: inline-block;
+    font-size: 16px;
+    padding-left: 20px;
+}
+
+.chatbox-controls {
+    color: black;
+    display: inline;
+    position: absolute;
+    float: right;
+    text-align: right;
+    left: auto;
+    right: 5px;
+    width: auto;
+    padding-top: 0;
+    margin-top: 0px;
+}
+
+.chatbox-controls button {
+    cursor: pointer;
+    color: #AAAAAA;
+    background: none;
+    border: none;
+    opacity: 1;
+    outline: none;
+    font-size: 30px;
+    vertical-align: top;
+    height: 40px;
+    line-height: inherit;
+    margin: 0;
+    padding: 0 6px;
+}
+
+.chatbox-controls button.reload-btn i {
+    background-position: -125px -63px;
+}
+
+.chatbox-controls button.minimize-btn i {
+    background-position: -62px -127px;
+}
+
+.chatbox-controls button.expand-btn i {
+    background-position: -16px -78px;
+}
+
+.chatbox-controls button.close-btn i {
+    background-position: -95px -127px;
+}
+
+.chatbox-header-log {
+    text-align: center;
+    padding: 10px 0px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0px auto;
+}
+
+.chatbox-header-logo .salutation {
+    color: white;
+    display: block;
+    padding-top: 10px;
+}
+
+.close-btn .icon {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.chat-button {
+    display: block;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 35%;
+    border: 2px solid #5B9BD5;
+    padding: 6px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+}
+
+.chat-button div.message {
+    background-image: url("../img/chat.png");
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.message .tooltiptext {
+    visibility: hidden;
+    width: 180px;
+    background-color: #5B9BD5;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 105%;
+}
+
+.message:hover .tooltiptext {
+    visibility: visible;
+}
+
+.list-close-btn .icon {
+    font-size: 15px;
+    cursor: pointer;
+    float: right;
+}
+
+.keypad {
+    margin-bottom: 13px;
+    width: 100%;
+}
+
+.quick-links {
+    padding-left: 20px;
+}
+
+.quick-links>a {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-size: 25px auto !important;
+    float: left;
+    margin: 0 2px;
+}
+
+.quick-links>a:hover {
+    background-color: aquamarine;
+}
+
+.quick-links .feedback-img {
+    background: white url("../img/feedback.png") center center no-repeat;
+}
+
+.quick-links .email-img {
+    background: white url("../img/email.png") center center no-repeat;
+}
+
+.scroll-to-top {
+    bottom: 3px;
+    right: 25px;
+    height: 40px;
+    width: 40px;
+
+    border: none;
+    background-color: white;
+    border-radius: 50%;
+    color: blue;
+    cursor: pointer;
+    display: none;
+    font-size: 14px;
+    position:absolute;
+    z-index: 10;
+}
+
+.widget {
+    display: none;
+    width: 630px;
+    right: 15px;
+    height: 520px;
+    bottom: 5%;
+    position: fixed;
+    background: rgb(0, 189, 242);
+    border-radius: 10px 10px 0px 0px;
+}
+
+.widget .expanded {
+    width: 90% !important;
+    margin: 0px auto;
+    left: 0 !important;
+    right: 0 !important;
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);
+}
