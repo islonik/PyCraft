@@ -1,5 +1,3 @@
-
-
 .chats {
     height: 385px;
     padding: 95px 20px 20px 20px;
@@ -81,6 +79,14 @@ div.chats>span:botMsg>ol {
     padding: 0 6px;
 }
 
+.chatbox-controls button i {
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-image: url("../img/ui-icons_ffffff_256x240.png");
+    background-repeat: no-repeat;
+}
+
 .chatbox-controls button.reload-btn i {
     background-position: -125px -63px;
 }
@@ -97,19 +103,19 @@ div.chats>span:botMsg>ol {
     background-position: -95px -127px;
 }
 
-.chatbox-header-log {
+.chatbot-header-logo .salutation {
+    color: white;
+    display: block;
+    padding-top: 10px;
+}
+
+.chatbot-header-logo {
     text-align: center;
     padding: 10px 0px;
     position: absolute;
     left: 0;
     right: 0;
     margin: 0px auto;
-}
-
-.chatbox-header-logo .salutation {
-    color: white;
-    display: block;
-    padding-top: 10px;
 }
 
 .close-btn .icon {
@@ -173,6 +179,7 @@ div.chats>span:botMsg>ol {
 
 .quick-links {
     padding-left: 20px;
+    padding-bottom: 5px;
 }
 
 .quick-links>a {
@@ -181,11 +188,11 @@ div.chats>span:botMsg>ol {
     border-radius: 50%;
     background-size: 25px auto !important;
     float: left;
-    margin: 0 2px;
+    margin: 0 5px;
 }
 
 .quick-links>a:hover {
-    background-color: aquamarine;
+    border: black solid 2px;
 }
 
 .quick-links .feedback-img {
@@ -213,6 +220,18 @@ div.chats>span:botMsg>ol {
     z-index: 10;
 }
 
+.userInput {
+    padding: 0.5em;
+    width: 92%;
+    margin-left: 4%;
+    border: 0;
+    height: 35px;
+    background: white;
+    border-radius: 4px;
+    font-size: 15px;
+
+}
+
 .widget {
     display: none;
     width: 630px;
@@ -221,7 +240,7 @@ div.chats>span:botMsg>ol {
     bottom: 5%;
     position: fixed;
     background: rgb(0, 189, 242);
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 10px 10px;
 }
 
 .widget .expanded {
@@ -230,4 +249,58 @@ div.chats>span:botMsg>ol {
     left: 0 !important;
     right: 0 !important;
     box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);
+}
+
+.widget .action-button>li {
+    position: relative;
+    background: darkblue;
+    color: white;
+    margin-top: 7px !important;
+    border: 0;
+    font-size: 13px;
+    border-radius: 6px !important;
+    display: block;
+    width: 100%;
+    text-transform: capitalize;
+}
+
+.widget .action-button-inner {
+    color: white;
+    clear: right;
+    min-width: 50%;
+    padding-inline-start: 40px;
+}
+
+.widget .action-button-inner>li {
+    position: relative;
+    background: darkblue;
+    color: white;
+    margin-top: 7px !important;
+    border: 0;
+    font-size: 12px;
+    border-radius: 6px !important;
+    display: block;
+    width: 100%;
+}
+
+.widget .action-button-inner li {
+    background: grey !important;
+    color: black !important;
+    font-size: 12px !important;
+}
+
+.widget .buttonTmplContentChild {
+    color: blue;
+    border-top: 1px solid lightblue;
+    padding: 7px;
+    margin: 0 !important;
+    text-align: center;
+    cursor: pointer;
+    background: white;
+}
+
+#ui-widget {
+    border: 0;
+    display: none;
+    width: 100% !important;
 }

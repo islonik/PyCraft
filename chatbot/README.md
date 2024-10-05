@@ -26,5 +26,5 @@ pip install -r requirements.txt
 ### How to start up project
 
 ```bash
-uvicorn main:app
+uvicorn main:server
 ```

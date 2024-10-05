@@ -19,10 +19,16 @@
 </head>
 
 <body>
+    <script>
+        var srcName = "{{src}}";
+        var userName = "inikki";
+    </script>
+
     <script type="text/javascript" src="/{{src}}/js/jquery.min.js"></script>
     <script type="text/javascript" src="/{{src}}/js/jquery-ui.js"></script>
     <script type="text/javascript" src="/{{src}}/js/lib/materialize.min.js"></script>
     <script type="text/javascript" src="/{{src}}/js/lib/showdown.min.js"></script>
+    <script type="text/javascript" src="/{{src}}/js/index.js"></script>
 
     <script type="text/javascript">
         let ws;
@@ -50,15 +56,15 @@
             <div class="chatbox-header">
                 <span class="chatbox-header-title">My Virtual Assistant</span>
                 <div class="chatbox-controls">
-                    <button class="reload-btn disabled" title="Reconnect" id="restart"><i></i></button>
-                    <button class="minimize-btn" title="Minimize" id="minimize"><i></i></button>
+                    <button class="reload-btn disabled" title="Reconnect"><i></i></button>
+                    <button class="minimize-btn" title="Minimize"><i></i></button>
                     <button class="expand-btn" title="Expand"><i></i></button>
                     <button class="close-btn" title="Close"><i></i></button>
                 </div>
             </div>
             <div class="chatbot-header-logo">
                 <a href="#">
-                    <img src="/{{src}}/img/chatbot-logo.jpg" title="Kafka" alt="Kafka">
+                    <img src="/{{src}}/img/chatbot-logo.png" height="200" title="Kafka" alt="Kafka">
                 </a>
                 <span class="salutation" id="salutation"></span>
             </div>
@@ -75,9 +81,9 @@
 
             <div class="quick-links">
                 <a href="javascript:;"
-                    class="model-feedback-open feedback-img" title="User Feedback" ></a>
+                    class="model-feedback-open feedback-img" title="Feedback" ></a>
                 <a href="mailto:nikita.lipatov@gmail.com"
-                    class="email-img" target="_blank" title="My Virtual Assistant Support" ></a>
+                    class="email-img" target="_blank" title="Support" ></a>
 
                 <button class="scroll-to-top" id="scroll-to-top" title="Scroll to top">
                     <i class="fas fa-arrow-up"></i>
@@ -85,7 +91,7 @@
             </div>
         </div>
 
-        <div class="chat-button" id="chat-button">
+        <div class="chat-button">
             <div class="message">
                 <span class="tooltiptext">My Virtual Assistant</span>
             </div>
