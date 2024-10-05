@@ -52,55 +52,54 @@ div.chats>span:botMsg>ol {
 }
 
 .chatbox-controls {
-    color: black;
     display: inline;
     position: absolute;
-    float: right;
-    text-align: right;
-    left: auto;
-    right: 5px;
-    width: auto;
-    padding-top: 0;
-    margin-top: 0px;
+    right: 1em;
 }
 
 .chatbox-controls button {
     cursor: pointer;
-    color: #AAAAAA;
     background: none;
     border: none;
-    opacity: 1;
-    outline: none;
-    font-size: 30px;
-    vertical-align: top;
     height: 40px;
-    line-height: inherit;
-    margin: 0;
-    padding: 0 6px;
 }
 
 .chatbox-controls button i {
     width: 20px;
     height: 20px;
     display: block;
-    background-image: url("../img/ui-icons_ffffff_256x240.png");
-    background-repeat: no-repeat;
 }
 
 .chatbox-controls button.reload-btn i {
     background-position: -125px -63px;
+    background-image: url("../img/refresh.png");
+    background-size: contain;
+    background-position: center;
+    filter: invert(100%);
 }
 
 .chatbox-controls button.minimize-btn i {
     background-position: -62px -127px;
+    background-image: url("../img/minimize.png");
+    background-size: contain;
+    background-position: center;
+    filter: invert(100%);
 }
 
 .chatbox-controls button.expand-btn i {
     background-position: -16px -78px;
+    background-image: url("../img/maximize.png");
+    background-size: contain;
+    background-position: center;
+    filter: invert(100%);
 }
 
 .chatbox-controls button.close-btn i {
     background-position: -95px -127px;
+    background-image: url("../img/close.png");
+    background-size: contain;
+    background-position: center;
+    filter: invert(100%);
 }
 
 .chatbot-header-logo .salutation {
@@ -185,22 +184,20 @@ div.chats>span:botMsg>ol {
 .quick-links>a {
     width: 25px;
     height: 25px;
-    border-radius: 50%;
+    border-radius: 00%;
     background-size: 25px auto !important;
     float: left;
     margin: 0 5px;
 }
 
-.quick-links>a:hover {
-    border: black solid 2px;
-}
-
 .quick-links .feedback-img {
-    background: white url("../img/feedback.png") center center no-repeat;
+    background: url("../img/feedback.png") center center no-repeat;
+    filter: invert(100%);
 }
 
 .quick-links .email-img {
-    background: white url("../img/email.png") center center no-repeat;
+    background: url("../img/email.png") center center no-repeat;
+    filter: invert(100%);
 }
 
 .scroll-to-top {
@@ -243,8 +240,9 @@ div.chats>span:botMsg>ol {
     border-radius: 10px 10px 10px 10px;
 }
 
-.widget .expanded {
-    width: 90% !important;
+.widget.expanded {
+    height: 80% !important;
+    width: 80% !important;
     margin: 0px auto;
     left: 0 !important;
     right: 0 !important;

@@ -75,4 +75,9 @@ window.addEventListener('load', () => {
         $(".widget").toggle();
         scrollToBottomOfResults();
     });
+
+    // expand chatbox window
+    $(".expand-btn").click(() => {
+        $(".widget").toggleClass("expanded");
+    });
 });
