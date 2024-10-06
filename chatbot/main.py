@@ -22,8 +22,23 @@ manager = ConnectionManager()
 profile = os.environ["PROFILE"]
 ws_host = os.environ["WS_HOST"]
 
-def process_message(self, data, client_id):
-    print(data)
+from models import Payload
+
+def process_message(payload: Payload, client_id):
+    response = ""
+
+    print(f"Processing message: '{payload}' for user = '{client_id}'")
+
+    response = {
+        "type": "bot",
+        "message": "Not implemented"
+    }
+    payload["message"] = {
+        "template_type" : "text",
+        "text" : "This message is from backend, ohoho!"
+    }
+    response = payload;
+    return response
 
 @server.get("/chatbot")
 async def home(request: Request):
@@ -39,14 +54,15 @@ async def home(request: Request):
 
 @server.websocket("/communicate")
 async def websocket_endpoint(websocket: WebSocket, client_id: str):
+    print("Endpoint '/communicate' called...")
     await manager.connect(websocket, client_id)
 
     try:
         while True:
             data = await websocket.receive_json()
-            print(f"Processing message: '{data}' for user = '{client_id}'")
             response = process_message(data, client_id)
             bot_response = manager.create_json_response(response, "bot")
+            print(f"Bot response message: '{bot_response}' for user = '{client_id}'")
             await manager.send_personal_message(bot_response, client_id)
     except WebSocketDisconnect as web_ex:
         connection = WebSocketConnectionModel()
@@ -55,11 +71,11 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
         manager.disconnect(connection)
 
         if web_ex.code == 1000:
-            print("Session finished")
+            print("Session finished.")
         else:
-            print("Error in Session")
+            print(f"Error in Session: {web_ex}")
     except Exception as ex:
-        print(f"An error has occured while trying to establish WS connection:{ex}")
+        print(f"An error has occured while trying to establish WS connection: {ex}")
 
 
 

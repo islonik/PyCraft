@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
         // Clear sessionStorage on page on load
         sessionStorage.removeItem("lastUtterance");
         // initial conversation
-        let resp = [{
+        let greeting = [{
             "text": "Hey, I'm here to help you. Please type 'help' to see what I can do for you.",
             "buttons": [
                 {
@@ -31,7 +31,8 @@ window.addEventListener('load', () => {
                     "payload": "Frequenlty Asked Questions"
                 }
             ]
-        }]
+        }];
+        setBotResponse(greeting);
 
         $(".scroll-to-top").click(function() {
             $(".chats").animate({scrollTop: 0}, 'slow');

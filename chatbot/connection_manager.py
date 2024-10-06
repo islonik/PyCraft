@@ -40,7 +40,7 @@ class ConnectionManager:
             print(f"Global context has been initialized for {client_id}")
 
         except WebSocketDisconnect as e:
-            print(f"An exception has occured while trying to connect:{e}")
+            print(f"An exception has occured while trying to connect: {e}")
 
     async def send_personal_message(self, message: str, client_id: str):
         for connection in self.activate_connections:

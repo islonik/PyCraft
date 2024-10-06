@@ -32,10 +32,10 @@
 
     <script type="text/javascript">
         let ws;
-        document.addEventListener("DOMContentLoader", function() {
-            var client_id = "{soeid}"
+        document.addEventListener("DOMContentLoaded", function() {
+            var client_id = "{{soeid}}";
             var ws_url = "{{ws_host}}".replaceAll("&#34;", "");
-            var url = `${ws_url}/communicate?client_id=${client_id}`
+            var url = `${ws_url}/communicate?client_id=${client_id}`;
             if (!ws || ws.readyState === WebSocket.CLOSED) {
                 ws = new WebSocket(url);
                 ws.onopen = function() {
@@ -48,7 +48,7 @@
                     console.log("Web socket connection error.", error)
                 }
             }
-        })
+        });
     </script>
 
     <div class="container">
@@ -75,19 +75,18 @@
             </div>
 
             <!-- keypad for users to enter messages -->
+            <button class="scroll-to-top" id="scroll-to-top" title="Scroll to top">
+                <i class="fas fa-arrow-up"></i>
+            </button>
             <div class="keypad">
                 <textarea class="userInput" id="userInput" placeholder="Type a message..." ></textarea>
             </div>
 
             <div class="quick-links">
-                <a href="javascript:;"
-                    class="model-feedback-open feedback-img" title="Feedback" ></a>
                 <a href="mailto:nikita.lipatov@gmail.com"
                     class="email-img" target="_blank" title="Support" ></a>
-
-                <button class="scroll-to-top" id="scroll-to-top" title="Scroll to top">
-                    <i class="fas fa-arrow-up"></i>
-                </button>
+                <a href="javascript:;"
+                    class="model-feedback-open feedback-img" title="Feedback" ></a>
             </div>
         </div>
 
@@ -97,6 +96,8 @@
             </div>
         </div>
     </div>
+
+
 </body>
 
 </html>
