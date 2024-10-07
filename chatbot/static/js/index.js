@@ -1,4 +1,3 @@
-
 // define function to import js file
 function include(file) {
     const script = document.createElement('script');
@@ -23,16 +22,8 @@ window.addEventListener('load', () => {
         // Clear sessionStorage on page on load
         sessionStorage.removeItem("lastUtterance");
         // initial conversation
-        let greeting = [{
-            "text": "Hey, I'm here to help you. Please type 'help' to see what I can do for you.",
-            "buttons": [
-                {
-                    "title": "Frequenlty Asked Questions",
-                    "payload": "Frequenlty Asked Questions"
-                }
-            ]
-        }];
-        setBotResponse(greeting);
+        // method name and message is imported from chat.js
+        setBotResponse(GREETING);
 
         $(".scroll-to-top").click(function() {
             $(".chats").animate({scrollTop: 0}, 'slow');
@@ -81,4 +72,5 @@ window.addEventListener('load', () => {
     $(".expand-btn").click(() => {
         $(".widget").toggleClass("expanded");
     });
+
 });

@@ -1,9 +1,36 @@
 const converter = new showdown.Converter();
 
+const GREETING = [{
+    "text": "Hey, I'm here to help you. Please type 'help' to see what I can do for you.",
+    "buttons": [
+        {
+            "title": "Frequenlty Asked Questions",
+            "payload": "Frequenlty Asked Questions"
+        }
+    ],
+}];
+
 function scrollToBottomOfResults() {
     const terminalResultDiv = document.getElementById("chats");
     terminalResultDiv.scrollTop = terminalResultDiv.scrollHeight;
 }
+
+$(".reload-btn").click(() => {
+    // destroy the existing chart
+    $(".collapsible").remove();
+    if (typeof chatChart !== "undefined") {
+        chatChart.destroy();
+    }
+    $(".chart-container").remove();
+    if (typeof modalChart !== "undefined") {
+        modalChart.destroy();
+    }
+    // clean chats history
+    $(".chats").html("");
+    $(".userInput").val("");
+    // output chat greeting
+    setBotResponse(GREETING);
+});
 
 $(".userInput").on("keyup keypress", (e) => {
     const keyCode = e.keyCode || e.which;
@@ -198,15 +225,6 @@ ws.onmessage = function(event) {
  */
 async function send(message) {
     let response = [];
-    let no_results_found = [{
-        "text": "Hey, I'm here to help you. Please type 'help' to see what I can do for you.",
-        "buttons": [
-            {
-                "title": "Frequenlty Asked Questions",
-                "payload": "Frequenlty Asked Questions"
-            }
-        ],
-    }];
     await new Promise((r) => setTimeout(r, 2000));
 
     payload = ""
