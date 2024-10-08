@@ -52,7 +52,8 @@ window.addEventListener('load', () => {
             greet = "Good Night!"
         }
         $("#salutation").text(`${greet} ${userName}`);
-        $(".widget").draggable({handle: '.chat-header', containment: 'window'});
+        // make widget draggable
+        $(".widget").draggable({handle: '.chatbox-header', containment: 'window'});
     });
 
     // open chatbox window
