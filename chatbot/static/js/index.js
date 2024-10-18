@@ -31,10 +31,10 @@ window.addEventListener('load', () => {
 
         $(".chats").scroll(function(data) {
             if ($(".chats").scrollTop() > 60) {
-                $(".chatbot-header-logo").hide();
+                $(".chatbox-header-logo").hide();
                 $(".scroll-to-top").fadeIn();
             } else {
-                $(".chatbot-header-logo").show();
+                $(".chatbox-header-logo").show();
                 $(".scroll-to-top").fadeOut();
             }
         });

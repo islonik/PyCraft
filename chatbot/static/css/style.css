@@ -186,13 +186,13 @@ div.chats>span:botMsg>ol {
     filter: invert(100%);
 }
 
-.chatbot-header-logo .salutation {
+.chatbox-header-logo .salutation {
     color: white;
     display: block;
     padding-top: 10px;
 }
 
-.chatbot-header-logo {
+.chatbox-header-logo {
     text-align: center;
     padding: 10px 0px;
     position: absolute;
