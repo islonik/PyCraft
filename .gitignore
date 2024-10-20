@@ -140,3 +140,13 @@ GitHub.sublime-settings
 
 # OS
 .DS_Store
+
+#Intellij Idea
+.idea/
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr

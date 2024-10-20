@@ -3,12 +3,9 @@ let keyOrder = new Object()
 
 function addTable(table, clickable) {
     setTimeout(() => {
-        console.log(table);
-
         const numberOrRowToDisplay = 5;
         // take all attributes from the first row
         let columns = Object.keys(table[0]);
-        console.log(columns);
         const tablePopup = document.getElementById("tablePopupContainer");
         const chatContainer = document.getElementById("chats");
         // exclude next attributes from the output
@@ -19,10 +16,8 @@ function addTable(table, clickable) {
             keyOrder[columns[key].toLowerCase()] = key;
         }
         // add all attributes from the first row as columns
-        console.log("before addColumnsInChat...");
         let mainTable = addColumnsInChat(columns);
         // form table body
-        console.log("forming body...");
         const tableContainer = document.createElement('div');
         tableContainer.classList.add('singleCardNew');
         const numRows = Math.min(numberOrRowToDisplay, table.length);
@@ -37,7 +32,6 @@ function addTable(table, clickable) {
             }
             mainTable += `</tr>`;
         }
-        console.log("before ShowMore...");
         // only add 'Show More' as a row if there are more than N rows
         if (table.length > numberOrRowToDisplay) {
             mainTable +=
@@ -51,7 +45,6 @@ function addTable(table, clickable) {
         tableContainer.innerHTML = mainTable;
         chatContainer.appendChild(tableContainer);
 
-        console.log("before scrollToBottomOfResults...");
         scrollToBottomOfResults();
 
         $(document).on("click", ".exp-table .showMore", function() {
