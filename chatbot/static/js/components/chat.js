@@ -4,8 +4,8 @@ const GREETING = [{
     "text": "Hey, I'm here to help you. Please type 'help' to see what I can do for you.",
     "buttons": [
         {
-            "title": "Frequenlty Asked Questions",
-            "payload": "Frequenlty Asked Questions"
+            "title": "default",
+            "payload": "default"
         }
     ],
 }];
@@ -134,7 +134,27 @@ function setBotResponse(response) {
                         $(botResponse).appendTo(".chats").hide().fadeIn(1000);
                     }
                 }
+
+                if (Object.hasOwnProperty.call(response[i], "buttons")) {
+                    if (response[i].buttons.length > 0) {
+                        addButtons(response[i].buttons);
+                    }
+                }
+                if (Object.hasOwnProperty.call(response[i], "table")) {
+                    let clickable = true;
+                    if (Object.hasOwnProperty.call(response[i], "clickable")) {
+                        if (typeof response[i].clickable !== 'undefined') {
+                            clickable = (response[i].clickable === 'true');
+                        }
+                    }
+
+                    if (response[i].table.length > 0) {
+                        addTable(response[i].table, clickable);
+                    }
+
+                }
             }
+            scrollToBottomOfResults();
         }
 
         $(".userInput").focus();
@@ -209,11 +229,19 @@ function sendMessage(payload) {
 ws.onmessage = function(event) {
     let response = [];
     let data = JSON.parse(event.data);
+
     console.log("Message from backend...!");
     console.log(data);
+
     if (data !== undefined) {
         if (data.message["template_type"] == "text") {
             response.push({"text" : data.message["text"]});
+        } else if (data.message["template_type"] == "table") {
+            response.push({
+                "text": data.message["text"],
+                "clickable": data.message["clickable"],
+                "table": data.message["msg_payload"]
+            });
         }
         setBotResponse(response);
     }
@@ -229,7 +257,13 @@ async function send(message) {
 
     payload = ""
     console.log("Message = " + message);
+    message = message.toLowerCase();
     if (message == 'help') {
+        payload = {
+            "type": "user",
+            "intent" : message
+        }
+    } else if (message == 'table') {
         payload = {
             "type": "user",
             "intent" : message

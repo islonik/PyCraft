@@ -3,9 +3,12 @@ let keyOrder = new Object()
 
 function addTable(table, clickable) {
     setTimeout(() => {
+        console.log(table);
+
         const numberOrRowToDisplay = 5;
         // take all attributes from the first row
-        let columns = Object.keys(talbe[0]);
+        let columns = Object.keys(table[0]);
+        console.log(columns);
         const tablePopup = document.getElementById("tablePopupContainer");
         const chatContainer = document.getElementById("chats");
         // exclude next attributes from the output
@@ -16,8 +19,10 @@ function addTable(table, clickable) {
             keyOrder[columns[key].toLowerCase()] = key;
         }
         // add all attributes from the first row as columns
+        console.log("before addColumnsInChat...");
         let mainTable = addColumnsInChat(columns);
         // form table body
+        console.log("forming body...");
         const tableContainer = document.createElement('div');
         tableContainer.classList.add('singleCardNew');
         const numRows = Math.min(numberOrRowToDisplay, table.length);
@@ -32,6 +37,7 @@ function addTable(table, clickable) {
             }
             mainTable += `</tr>`;
         }
+        console.log("before ShowMore...");
         // only add 'Show More' as a row if there are more than N rows
         if (table.length > numberOrRowToDisplay) {
             mainTable +=
@@ -45,12 +51,13 @@ function addTable(table, clickable) {
         tableContainer.innerHTML = mainTable;
         chatContainer.appendChild(tableContainer);
 
+        console.log("before scrollToBottomOfResults...");
         scrollToBottomOfResults();
 
         $(document).on("click", ".exp-table .showMore", function() {
             let fullTable = createTableBody(table, columns, clickable);
             fullTable += `</tbody></table>`;
-            table.innerHTML = fullTable;
+            tablePopup.innerHTML = fullTable;
             document.querySelector('.popup').style.display = "block";
             document.querySelector('.popupOverlay').style.display = "block";
         });
@@ -61,7 +68,7 @@ function createTableBody(table, columns, clickable) {
     let tab = addColumnsInChat(columns);
     for (let k = 0; k < table.length; k++) {
         if (clickable) {
-            tab += `tr class="custom-row">`;
+            tab += `<tr class="custom-row">`;
         } else {
             tab += `<tr>`;
         }
@@ -85,7 +92,7 @@ function addColumnsInChat(columns) {
 
     let columnsHtml = columnsHtmlHeader;
     for (let i = 0; i < columns.length; i++) {
-        columns += `<th>${columns[i]}</th>`;
+        columnsHtml += `<th>${columns[i]}</th>`;
     }
     columnsHtml += columnsHtmlFooter;
     return columnsHtml;

@@ -303,6 +303,12 @@ div.chats>span:botMsg>ol {
     filter: invert(100%);
 }
 
+.singleCard,
+.singleCardNew {
+    padding-left: 10%;
+    padding-right: 10px;
+}
+
 .scroll-to-top {
     bottom: 3px;
     right: 25px;
@@ -338,54 +344,6 @@ div.chats>span:botMsg>ol {
     left: 0 !important;
     right: 0 !important;
     box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);
-}
-
-.widget .action-button>li {
-    position: relative;
-    background: darkblue;
-    color: white;
-    margin-top: 7px !important;
-    border: 0;
-    font-size: 13px;
-    border-radius: 6px !important;
-    display: block;
-    width: 100%;
-    text-transform: capitalize;
-}
-
-.widget .action-button-inner {
-    color: white;
-    clear: right;
-    min-width: 50%;
-    padding-inline-start: 40px;
-}
-
-.widget .action-button-inner>li {
-    position: relative;
-    background: darkblue;
-    color: white;
-    margin-top: 7px !important;
-    border: 0;
-    font-size: 12px;
-    border-radius: 6px !important;
-    display: block;
-    width: 100%;
-}
-
-.widget .action-button-inner li {
-    background: grey !important;
-    color: black !important;
-    font-size: 12px !important;
-}
-
-.widget .buttonTmplContentChild {
-    color: blue;
-    border-top: 1px solid lightblue;
-    padding: 7px;
-    margin: 0 !important;
-    text-align: center;
-    cursor: pointer;
-    background: white;
 }
 
 #ui-widget {

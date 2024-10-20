@@ -25,18 +25,46 @@ ws_host = os.environ["WS_HOST"]
 from models import Payload
 
 def process_message(payload: Payload, client_id):
-    response = ""
-
-    print(f"Processing message: '{payload}' for user = '{client_id}'")
-
     response = {
         "type": "bot",
         "message": "Not implemented"
     }
-    payload["message"] = {
-        "template_type" : "text",
-        "text" : "This message is from backend, ohoho!"
-    }
+
+    print(f"Processing message: '{payload}' for user = '{client_id}'")
+
+    intent = payload["intent"]
+
+    if intent == "table":
+        payload["message"] = {
+            "template_type": "table",
+            "clickable": "false",
+            "text": "This table contains next values.",
+            "msg_payload" : [
+                {
+                    "Type": "Corporation",
+                    "RowIndex": 0,
+                    "Id": "1",
+                    "Name": "Umbrealla corporation"
+                },
+                {
+                    "Type": "Corporation",
+                    "RowIndex": 0,
+                    "Id": "2",
+                    "Name": "Apple INC"
+                },
+                {
+                    "Type": "Bank",
+                    "RowIndex": 0,
+                    "Id": "3",
+                    "Name": "Citi"
+                }
+            ]
+        }
+    else:
+        payload["message"] = {
+            "template_type" : "text",
+            "text" : "This message is from backend, ohoho!"
+        }
     response = payload;
     return response
 
