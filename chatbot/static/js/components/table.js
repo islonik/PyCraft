@@ -52,7 +52,6 @@ function addTable(table, clickable) {
             fullTable += `</tbody></table>`;
             tablePopup.innerHTML = fullTable;
             document.querySelector('.popup').style.display = "block";
-            document.querySelector('.popupOverlay').style.display = "block";
         });
     }, 1000);
 };
@@ -99,7 +98,6 @@ $(document).on("click", ".exp-table .custom-row", function() {
     const text = rowData[0] + " " + rowData[1];
 
     document.querySelector('.popup').style.display = "none";
-    document.querySelector('.popupOverlay').style.display = "none";
 
     if (payload["context"]["entities"]["selected_id"] !== undefined) {
         payload["context"]["entities"]["selected_id"] = `${rowData[keyOrder['id']]}`;
@@ -116,5 +114,4 @@ $(document).on("click", ".exp-table .custom-row", function() {
 
 $(document).on("click", ".popup .icon", function() {
     document.querySelector('.popup').style.display = "none";
-    document.querySelector('.popupOverlay').style.display = "none";
 });

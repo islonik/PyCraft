@@ -20,7 +20,7 @@ function addButtons(buttons) {
                 `
                 <a class="action-button">
                     <li class="buttonTmplContentChild outer-child">Types</li>
-                    <ul class="action-button-inner hidden">
+                    <ul class="action-button-inner hidden" style="display: none;">
                         <li class="buttonTmplContentChild"
                             value="Table"
                             actual-value="Table"
