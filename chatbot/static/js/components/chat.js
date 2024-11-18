@@ -35,7 +35,7 @@ $(".reload-btn").click(() => {
 $(".userInput").on("keyup keypress", (e) => {
     const keyCode = e.keyCode || e.which;
 
-    const text = $(".userInput").val();
+    const text = $(".userInput").text();
     if (keyCode === 13) {
         if (text === "" || $.trim(text) === "") {
             e.preventDefault();
@@ -74,7 +74,7 @@ function setUserResponse(message) {
         `<div class="clearfix"></div>`;
     $(user_response).appendTo(".chats").show("slow");
 
-    $(".userInput").val("");
+    $(".userInput").text("");
     scrollToBottomOfResults();
     showBotTyping();
 }

@@ -83,17 +83,13 @@
 }
 
 .chats {
-    height: 385px;
+    margin: 0;
+    max-height: 75%;
+    width: 100%;
     padding: 255px 20px 20px 20px;
     border-radius: 1px;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin-top: 1px;
-    transition: 0.2s;
-}
-
-div.chats::-webkit-scrollbar {
-    overflow-y: hidden;
-    width: 0px;
 }
 
 div.chats>pre {
@@ -250,6 +246,10 @@ div.chats>span:botMsg>ol {
     text-align: right;
 }
 
+.hidden {
+    display: none;
+}
+
 .message .tooltiptext {
     visibility: hidden;
     width: 180px;
@@ -277,11 +277,6 @@ div.chats>span:botMsg>ol {
 .keypad {
     margin-bottom: 13px;
     width: 100%;
-}
-
-.quick-links {
-    padding-left: 20px;
-    padding-bottom: 5px;
 }
 
 .quick-links>a {
@@ -329,8 +324,12 @@ div.chats>span:botMsg>ol {
 .widget {
     display: none;
     width: 630px;
+    min-width: 30%;
+    max-width: 90%;
     right: 15px;
-    height: 520px;
+    height: 630px;
+    min-height: 20%;
+    max-height: 90%;
     bottom: 5%;
     position: fixed;
     background: rgb(0, 189, 242);
@@ -338,29 +337,56 @@ div.chats>span:botMsg>ol {
 }
 
 .widget.expanded {
-    /* height: 80% !important; */
-    width: 80% !important;
+    width: 90%!important;
     margin: 0px auto;
     left: 0 !important;
     right: 0 !important;
     box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);
+
+    min-width: 330px;
+    min-height: 95%;
+    bottom: 10px!important;
+    top: auto!important;
+}
+
+.widget .core-chat-footer {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    min-height: 38px;
+    padding: 5px 20px;
+}
+
+.widget .pos-relative {
+    position: relative !important;
+}
+
+.widget .core-chat-footer .chatInputBox {
+    width: 100%;
+    padding: 6px;
+    outline: none;
+    display: block;
+    font-size: 16px;
+    cursor: text;
+    margin-bottom: 16px;
+    max-height: 70px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: "Lato", sans-serif;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.widget [contenteditable=true]:empty:before {
+    content: attr(placeholder);
+    display: block;
+    color: #D0D0D0;
 }
 
 #ui-widget {
     border: 0;
     display: none;
     width: 100% !important;
-}
-
-.userInput {
-    padding: 0.5em;
-    width: 92%;
-    margin-left: 4%;
-    border: 0;
-    height: 35px;
-    background: white;
-    border-radius: 4px;
-    font-size: 15px;
 }
 
 .userMessage {

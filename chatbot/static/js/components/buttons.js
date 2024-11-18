@@ -6,9 +6,11 @@ function addButtons(buttons) {
 
         if (buttons[0].payload == "default") {
             $(
-                '<div class="singleCardNew">' +
-                    '<div class="buttons">' +
-                        '<div class="menuNew"></div>' +
+                '<div class="chat-list">' +
+                    '<div class="singleCardNew">' +
+                        '<div class="buttons">' +
+                            '<div class="menuNew"></div>' +
+                        '</div>' +
                     '</div>' +
                 '</div>'
             )
@@ -20,7 +22,7 @@ function addButtons(buttons) {
                 `
                 <a class="action-button">
                     <li class="buttonTmplContentChild outer-child">Types</li>
-                    <ul class="action-button-inner hidden" style="display: none;">
+                    <ul class="action-button-inner hidden">
                         <li class="buttonTmplContentChild"
                             value="Table"
                             actual-value="Table"
@@ -39,15 +41,28 @@ function addButtons(buttons) {
 
 function addEvent() {
     $(".outer-child").click(function() {
-        $(".outer-child").not(this).next("ul").hide();
-        $(this).next("ul").toggle();
+        let target = $(this).next("ul").toggleClass("hidden");
+        scrollToBottom(target);
     });
 
     $(".inner-child").click(function() {
-        let header = $(this);
-        let cont = header.next();
-        cont.slideToggle(200, function() {});
+        let target = $(this).next("ul").toggleClass("hidden");
+        scrollToBottom(target);
     });
+
+    function scrollToBottom(element) {
+        if (!element.length || element.hasClass("hidden")) {
+            return;
+        }
+        let container = $(".chats");
+        let containerOffSet = container.offset().top;
+        let elementOffSet = element.offset().top;
+        let currentScroll = container.scrollTop();
+        let newScroll = currentScroll + (elementOffSet - containerOffSet);
+        container.animate({
+            scrollTop: newScroll
+        }, 500);
+    }
 
     $(".menuNew li:not(.outer-child):not(.inner-child)").off("click").on("click", function(e) {
         let type = $(this).attr("type");
